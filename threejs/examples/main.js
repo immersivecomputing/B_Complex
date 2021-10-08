@@ -33,12 +33,13 @@ function init(){
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
 
 		object = obj;
-		
+		object.rotation.x = Math.PI / 2;
+
 		object.traverse( function(child){
 			if (child.isMesh) {
 				child.material = material;
 
-				//child.rotation.z = Math.PI / 2;
+				
 
 				var geometry = child.geometry;
 				var middle = new THREE.Vector3();
@@ -47,7 +48,8 @@ function init(){
 				middle.x = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
 				middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
 				middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
-					
+
+
 				camera.position.set(geometry.boundingBox.min.x, geometry.boundingBox.min.y, geometry.boundingBox.min.z);
 				camera.lookAt(middle.x, middle.y, middle.z);
 				controls.target.set(middle.x, middle.y, middle.z);
