@@ -55,6 +55,8 @@ function init(){
 
 
 		gui.add(object.rotation, 'x', -Math.PI, Math.PI);
+		gui.add(object.rotation, 'y', -Math.PI, Math.PI);
+		gui.add(object.rotation, 'z', -Math.PI, Math.PI);
 
 		scene.add(object);
 
