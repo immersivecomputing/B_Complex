@@ -21,7 +21,9 @@ function init(){
 		camera
 	);
 	
-	var material = new THREE.MeshBasicMaterial();
+	var material = new THREE.MeshBasicMaterial({
+		color: 0xffffff
+	});
 	const loader = new OBJLoader();
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
 
