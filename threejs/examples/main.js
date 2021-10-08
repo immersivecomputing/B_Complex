@@ -42,6 +42,7 @@ function init(){
 					
 				camera.position.set(geometry.boundingBox.min);
 				camera.lookAt(middle);
+				controls.target.set(middle);
 			}
 		});
 		console.log(object);
