@@ -1,3 +1,7 @@
+import { OrbitControls } from './jsm/controls/OrbitControls.js';
+import { OBJLoader } from './jsm/loaders/OBJLoader.js';
+
+let object;
 
 function init(){
 	var scene = new THREE.Scene();
@@ -16,6 +20,19 @@ function init(){
 		scene,
 		camera
 	);
+	
+	var material = new THREE.MeshBasicMaterial();
+	const loader = new OBJLoader();
+	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
+
+					object = obj;
+					object.traverse( function(child){
+						if (child.isMesh)) child.material = material;
+					});
+					scene.add(object);
+
+				}, onProgress, onError );
+	
 }
 
 init();
