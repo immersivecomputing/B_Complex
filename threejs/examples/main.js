@@ -43,7 +43,7 @@ function init(){
 					
 				camera.position.set(geometry.boundingBox.min.x, geometry.boundingBox.min.y, geometry.boundingBox.min.z);
 				camera.lookAt(middle.x, middle.y, middle.z);
-				//controls.target.set(middle);
+				controls.target.set(middle.x, middle.y, middle.z);
 			}
 		});
 		scene.add(object);
