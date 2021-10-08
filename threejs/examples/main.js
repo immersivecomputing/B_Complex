@@ -21,7 +21,6 @@ function init(){
 	var controls = new OrbitControls(camera, renderer.domElement);
 
 	update(renderer, scene, camera, controls);
-	//update(renderer, scene, camera);
 	
 	var material = new THREE.MeshBasicMaterial({
 		color: 0xffffff
@@ -30,7 +29,7 @@ function init(){
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
 
 		object = obj;
-		object.rotation.x(Math.PI / 2);
+		object.rotation.x = Math.PI / 2;
 		object.traverse( function(child){
 			if (child.isMesh) {
 				child.material = material;
