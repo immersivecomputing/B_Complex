@@ -42,7 +42,7 @@ function init(){
 			}
 		});
 
-
+		var middle = new THREE.Vector3();
 		var bbox = new THREE.Box3().setFromObject(object);
 		//bbox.min.sub(object.position);
 		//bbox.max.sub(object.position);
