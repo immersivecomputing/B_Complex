@@ -25,17 +25,26 @@ function init(){
 	const loader = new OBJLoader();
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
 
-					object = obj;
-					object.traverse( function(child){
-						if (child.isMesh) {
-							child.material = material;
-							child.geometry.computeBoundingBox();
-						}
-					});
-					console.log(object);
-					scene.add(object);
+		object = obj;
+		object.traverse( function(child){
+			if (child.isMesh) {
+				child.material = material;
+				var geometry = child.geometry;
+				var middle = new THREE.Vector3();
+				
+				geometry.computeBoundingBox();
+				middle.x = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
+				middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
+				middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
+					
+				camera.position = child.geometry.boundinBox.min;
+				camera.lookAt(middle);
+			}
+		});
+		console.log(object);
+		scene.add(object);
 
-				} );
+	} );
 	
 }
 
