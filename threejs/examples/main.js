@@ -39,27 +39,25 @@ function init(){
 			if (child.isMesh) {
 				child.material = material;
 
-				
-
-				var geometry = child.geometry;
-				var middle = new THREE.Vector3();
-
-				geometry.computeBoundingBox();
-				middle.x = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
-				middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
-				middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
-
-
-				camera.position.set(geometry.boundingBox.min.x, geometry.boundingBox.min.y, geometry.boundingBox.min.z);
-				camera.lookAt(middle.x, middle.y, middle.z);
-				controls.target.set(middle.x, middle.y, middle.z);
 			}
 		});
 
 
-		gui.add(camera.position, 'x', -600000, 600000);
-		gui.add(object.rotation, 'y', -600000, 600000);
-		gui.add(object.rotation, 'z', -600000, 600000);
+		var bbox = new THREE.Box3().setFromObject(object);
+		//bbox.min.sub(object.position);
+		//bbox.max.sub(object.position);
+
+		console.log(bbox);
+
+		//geometry.computeBoundingBox();
+		//middle.x = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
+		//middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
+		//middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
+
+
+		//camera.position.set(geometry.boundingBox.min.x, geometry.boundingBox.min.y, geometry.boundingBox.min.z);
+		//camera.lookAt(middle.x, middle.y, middle.z);
+		//controls.target.set(middle.x, middle.y, middle.z);
 
 
 		console.log(object);
