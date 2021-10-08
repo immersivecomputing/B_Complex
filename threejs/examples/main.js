@@ -38,7 +38,7 @@ function init(){
 			if (child.isMesh) {
 				child.material = material;
 
-				child.rotation.z = Math.PI / 2;
+				//child.rotation.z = Math.PI / 2;
 
 				var geometry = child.geometry;
 				var middle = new THREE.Vector3();
