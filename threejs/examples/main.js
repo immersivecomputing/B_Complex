@@ -45,7 +45,6 @@ function init(){
 				controls.target.set(middle);
 			}
 		});
-		console.log(object);
 		scene.add(object);
 
 	} );
@@ -57,7 +56,7 @@ function update (renderer, scene, camera, controls){
 		scene,
 		camera
 	);
-
+	console.log(camera);
 	controls.update();
 
 	requestAnimationFrame(function(){
