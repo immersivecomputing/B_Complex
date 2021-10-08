@@ -16,10 +16,7 @@ function init(){
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.getElementById('webgl').appendChild(renderer.domElement);
-	renderer.render(
-		scene,
-		camera
-	);
+	update(renderer, scene, camera);
 	
 	var material = new THREE.MeshBasicMaterial({
 		color: 0xffffff
@@ -48,6 +45,16 @@ function init(){
 
 	} );
 	
+}
+
+function update (renderer, scene, camera){
+	renderer.render(
+		scene,
+		camera
+	);
+	requestAnimationFrame(function(){
+		update(renderer, scene, camera);
+	});
 }
 
 init();
