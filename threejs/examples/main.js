@@ -37,10 +37,11 @@ function init(){
 		object.traverse( function(child){
 			if (child.isMesh) {
 				child.material = material;
+
+				child.rotation.z = Math.PI / 2;
+
 				var geometry = child.geometry;
 				var middle = new THREE.Vector3();
-
-				//child.rotation.x = Math.PI / 2;
 
 				geometry.computeBoundingBox();
 				middle.x = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
