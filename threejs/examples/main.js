@@ -1,6 +1,6 @@
 
 function init(){
-	var scene = new THREE.scene();
+	var scene = new THREE.Scene();
 
 	var camera = new THREE.PerspectiveCamera(
 		45,
