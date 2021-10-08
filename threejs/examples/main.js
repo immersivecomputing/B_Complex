@@ -1,4 +1,5 @@
-
+import * as THREE from '../build/three.module.js';
+import { OBJLoader } from './jsm/loaders/OBJLoader.js';
 
 let object;
 
@@ -21,7 +22,7 @@ function init(){
 	);
 	
 	var material = new THREE.MeshBasicMaterial();
-	const loader = new THREE.OBJLoader();
+	const loader = new OBJLoader();
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
 
 					object = obj;
