@@ -29,7 +29,7 @@ function init(){
 					object.traverse( function(child){
 						if (child.isMesh) {
 							child.material = material;
-							child.computBoundingBox();
+							child.computeBoundingBox();
 						}
 					});
 					console.log(object);
