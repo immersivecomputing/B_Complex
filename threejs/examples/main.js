@@ -50,14 +50,14 @@ function init(){
 		console.log(bbox);
 
 		//geometry.computeBoundingBox();
-		//middle.x = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
-		//middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
-		//middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
+		middle.x = (bbox.max.x + bbox.min.x) / 2;
+		middle.y = (bbox.max.y + bbox.min.y) / 2;
+		middle.z = (bbox.max.z + bbox.min.z) / 2;
 
 
-		//camera.position.set(geometry.boundingBox.min.x, geometry.boundingBox.min.y, geometry.boundingBox.min.z);
-		//camera.lookAt(middle.x, middle.y, middle.z);
-		//controls.target.set(middle.x, middle.y, middle.z);
+		camera.position.set(bbox.min.x, bbox.min.y, bbox.min.z);
+		camera.lookAt(middle.x, middle.y, middle.z);
+		controls.target.set(middle.x, middle.y, middle.z);
 
 
 		console.log(object);
