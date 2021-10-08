@@ -26,7 +26,7 @@ function init(){
 
 					object = obj;
 					object.traverse( function(child){
-						if (child.isMesh)) child.material = material;
+						if (child.isMesh) child.material = material;
 					});
 					scene.add(object);
 
