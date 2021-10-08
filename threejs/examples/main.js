@@ -57,9 +57,9 @@ function init(){
 		});
 
 
-		gui.add(object.rotation, 'x', -Math.PI, Math.PI);
-		gui.add(object.rotation, 'y', -Math.PI, Math.PI);
-		gui.add(object.rotation, 'z', -Math.PI, Math.PI);
+		gui.add(camera.position, 'x', -600000, 600000);
+		gui.add(object.rotation, 'y', -600000, 600000);
+		gui.add(object.rotation, 'z', -600000, 600000);
 
 
 		console.log(object);
