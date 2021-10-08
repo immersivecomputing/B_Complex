@@ -1,11 +1,13 @@
 import * as THREE from '../build/three.module.js';
 import { OBJLoader } from './jsm/loaders/OBJLoader.js';
 import { OrbitControls } from './jsm/controls/OrbitControls.js';
+import { GUI } from './jsm/libs/dat.gui.module.js';
 
 let object;
 
 function init(){
 	var scene = new THREE.Scene();
+	var gui = new GUI();
 
 	var camera = new THREE.PerspectiveCamera(
 		45,
@@ -13,6 +15,8 @@ function init(){
 		1,
 		10000
 	);
+
+	
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
@@ -48,6 +52,10 @@ function init(){
 				controls.target.set(middle.x, middle.y, middle.z);
 			}
 		});
+
+
+		gui.add(object.rotation, 'x', -Math.PI, Math.PI);
+
 		scene.add(object);
 
 	} );
