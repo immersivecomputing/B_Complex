@@ -11,7 +11,7 @@ function init(){
 		45,
 		window.innerWidth/window.innerHeight,
 		1,
-		1000
+		10000
 	);
 
 	var renderer = new THREE.WebGLRenderer();
@@ -30,6 +30,7 @@ function init(){
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
 
 		object = obj;
+		object.rotation.x(Math.PI / 2);
 		object.traverse( function(child){
 			if (child.isMesh) {
 				child.material = material;
@@ -53,7 +54,6 @@ function init(){
 }
 
 function update(renderer, scene, camera, controls) {
-//function update(renderer, scene, camera) {
 	renderer.render(
 		scene,
 		camera
@@ -63,7 +63,6 @@ function update(renderer, scene, camera, controls) {
 
 	requestAnimationFrame(function(){
 		update(renderer, scene, camera, controls);
-		//update(renderer, scene, camera);
 	});
 }
 
