@@ -37,7 +37,9 @@ function init(){
 				middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
 				middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
 					
-				camera.position = child.geometry.boundingBox.min;
+				camera.position.x = geometry.boundingBox.min.x;
+				camera.position.y = geometry.boundingBox.min.y;
+				camera.position.z = geometry.boundingBox.min.z;
 				camera.lookAt(middle);
 			}
 		});
