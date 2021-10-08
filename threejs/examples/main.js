@@ -1,5 +1,6 @@
 import * as THREE from '../build/three.module.js';
 import { OBJLoader } from './jsm/loaders/OBJLoader.js';
+import { OrbitControls } from './jsm/controls/OrbitControls.js';
 
 let object;
 
@@ -36,7 +37,7 @@ function init(){
 				middle.y = (geometry.boundingBox.max.y + geometry.boundingBox.min.y) / 2;
 				middle.z = (geometry.boundingBox.max.z + geometry.boundingBox.min.z) / 2;
 					
-				camera.position = child.geometry.boundinBox.min;
+				camera.position = child.geometry.boundingBox.min;
 				camera.lookAt(middle);
 			}
 		});
