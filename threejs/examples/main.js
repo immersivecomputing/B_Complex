@@ -29,6 +29,7 @@ function init(){
 					object.traverse( function(child){
 						if (child.isMesh) child.material = material;
 					});
+					console.log(object);
 					scene.add(object);
 
 				} );
