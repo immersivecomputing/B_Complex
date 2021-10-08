@@ -18,9 +18,10 @@ function init(){
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
-	var controls = new OrbitControls(camera, renderer.domElement);
+	//var controls = new OrbitControls(camera, renderer.domElement);
 
-	update(renderer, scene, camera, controls);
+	//update(renderer, scene, camera, controls);
+	update(renderer, scene, camera);
 	
 	var material = new THREE.MeshBasicMaterial({
 		color: 0xffffff
@@ -42,7 +43,7 @@ function init(){
 					
 				camera.position.set(geometry.boundingBox.min);
 				camera.lookAt(middle);
-				controls.target.set(middle);
+				//controls.target.set(middle);
 			}
 		});
 		scene.add(object);
@@ -51,16 +52,18 @@ function init(){
 	
 }
 
-function update (renderer, scene, camera, controls){
+//function update(renderer, scene, camera, controls) {
+function update(renderer, scene, camera) {
 	renderer.render(
 		scene,
 		camera
 	);
 	console.log(camera);
-	controls.update();
+	//controls.update();
 
 	requestAnimationFrame(function(){
-		update(renderer, scene, camera, controls);
+		//update(renderer, scene, camera, controls);
+		update(renderer, scene, camera);
 	});
 }
 
