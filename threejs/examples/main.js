@@ -33,7 +33,7 @@ function init(){
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
 
 		object = obj;
-		object.rotation.x = Math.PI / 2;
+		object.rotation.x = -Math.PI / 2;
 
 		object.traverse( function(child){
 			if (child.isMesh) {
@@ -44,12 +44,9 @@ function init(){
 
 		var middle = new THREE.Vector3();
 		var bbox = new THREE.Box3().setFromObject(object);
-		//bbox.min.sub(object.position);
-		//bbox.max.sub(object.position);
 
 		console.log(bbox);
 
-		//geometry.computeBoundingBox();
 		middle.x = (bbox.max.x + bbox.min.x) / 2;
 		middle.y = (bbox.max.y + bbox.min.y) / 2;
 		middle.z = (bbox.max.z + bbox.min.z) / 2;
