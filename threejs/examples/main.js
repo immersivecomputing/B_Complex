@@ -17,6 +17,8 @@ function init(){
 	);
 
 	var light = getDirectionalLight(1);
+	light.position.y = 4;
+	light.intensity = 2;
 	scene.add(light);
 	gui.add(light, 'intensity', 0, 10);
 	gui.add(light.position, 'x', 0, 20);
@@ -44,6 +46,7 @@ function init(){
 		object.traverse( function(child){
 			if (child.isMesh) {
 				child.material = material;
+				child.castShadow = true;
 			}
 		});
 
