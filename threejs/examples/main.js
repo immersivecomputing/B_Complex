@@ -68,8 +68,8 @@ function loadCSV(fileName, rowMin, rowMax) {
 			for (let i = rowMin; i < rowMax; i++) {
 				
 				let xpos = parseFloat(csvData[i - 1].X);
-				let ypos = parseFloat(csvData[i - 1].Y);
-				let zpos = 0;
+				let ypos = 200;
+				let zpos = parseFloat(csvData[i - 1].Y) * -1;
 				//v3array.push(new THREE.Vector3(xpos, ypos, zpos));
 				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
 				
