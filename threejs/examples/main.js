@@ -42,6 +42,11 @@ function init(){
 	update(renderer, scene, camera, controls);
 
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj');
 }
 
 function loadOBJ(fileName) {
