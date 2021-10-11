@@ -77,7 +77,7 @@ function loadOBJ(fileName, renderOrder) {
 		camera.lookAt(middle.x, middle.y, middle.z);
 		controls.target.set(middle.x, middle.y, middle.z);
 
-		object.renderOrder(renderOrder);
+		object.renderOrder = renderOrder;
 
 		scene.add(object);
 
