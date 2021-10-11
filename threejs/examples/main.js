@@ -27,7 +27,8 @@ function init(){
 	update(renderer, scene, camera, controls);
 	
 	var material = new THREE.MeshBasicMaterial({
-		color: 0xffffff
+		color: 0xffffff,
+		side: THREE.DoubleSide
 	});
 	const loader = new OBJLoader();
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
@@ -57,7 +58,6 @@ function init(){
 		controls.target.set(middle.x, middle.y, middle.z);
 
 
-		console.log(object);
 		scene.add(object);
 
 	} );
