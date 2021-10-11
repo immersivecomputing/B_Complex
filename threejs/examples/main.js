@@ -72,14 +72,14 @@ function init(){
 }
 
 function getDirectionalLight(intensity) {
-	var light = new THREE.DirectionalLight(0xffffff, intensity)
+	var light = new THREE.DirectionalLight(0xffffff, intensity);
 	light.castShadow = true;
 
 	return light;
 }
 
 function getAmbientLight(intensity) {
-	var light = THREE.AmbientLight('rgb(255,255,255)')
+	var light = new THREE.AmbientLight('rgb(255,255,255)');
 }
 
 function update(renderer, scene, camera, controls) {
