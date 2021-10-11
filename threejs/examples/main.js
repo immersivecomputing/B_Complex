@@ -16,8 +16,8 @@ function init(){
 		10000
 	);
 
-	var light = getDirectionalLight(2);
-	var ambientLight = getAmbientLight(1)
+	var light = getDirectionalLight(1);
+	var ambientLight = getAmbientLight(0.5)
 	light.position.y = 4;
 	scene.add(light);
 	scene.add(ambientLight);
