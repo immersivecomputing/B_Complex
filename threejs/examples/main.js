@@ -22,6 +22,7 @@ function init(){
 	scene.add(light);
 	scene.add(ambientLight);
 
+	gui.add(ambientLight, 'intensity', 0, 10);
 	gui.add(light, 'intensity', 0, 10);
 	gui.add(light.position, 'x', 0, 20);
 	gui.add(light.position, 'y', 0, 20);
