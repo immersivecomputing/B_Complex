@@ -63,7 +63,7 @@ function loadCSV(fileName, rowMin, rowMax) {
 	const csvloader = new THREE.FileLoader();
 	csvloader.load(fileName,
 		function (data) {
-			csvData = csvParse(data);
+			var csvData = csvParse(data);
 			//let v3array = [];
 			for (let i = rowMin; i < rowMax; i++) {
 				
