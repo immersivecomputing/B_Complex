@@ -66,13 +66,13 @@ function loadCSV(fileName, rowMin, rowMax) {
 			csvData = csvParse(data);
 			//let v3array = [];
 			for (let i = rowMin; i < rowMax; i++) {
-				if (parseFloat(csvData[i].Depth) >= parseFloat(csvData[i - 1].Depth)) {
-					let xpos = parseFloat(csvData[i - 1].X);
-					let ypos = parseFloat(csvData[i - 1].Y);
-					let zpos = 0;
-					//v3array.push(new THREE.Vector3(xpos, ypos, zpos));
-					getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
-				}
+				
+				let xpos = parseFloat(csvData[i - 1].X);
+				let ypos = parseFloat(csvData[i - 1].Y);
+				let zpos = 0;
+				//v3array.push(new THREE.Vector3(xpos, ypos, zpos));
+				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
+				
 			}
 		}
 	);
