@@ -48,6 +48,7 @@ function init(){
 			if (child.isMesh) {
 				child.material = material;
 				child.castShadow = true;
+				child.geometry.computeVertexNormals(true);
 			}
 		});
 
