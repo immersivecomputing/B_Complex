@@ -5,6 +5,11 @@ import { GUI } from './jsm/libs/dat.gui.module.js';
 
 let object;
 let scene, camera, controls;
+var objMaterial = new THREE.MeshPhongMaterial({
+	color: 'rgb(120,120,120)',
+	side: THREE.DoubleSide,
+	shading: THREE.SmoothShading
+});
 
 function init(){
 	scene = new THREE.Scene();
@@ -36,12 +41,6 @@ function init(){
 	controls = new OrbitControls(camera, renderer.domElement);
 
 	update(renderer, scene, camera, controls);
-	
-	var material = new THREE.MeshPhongMaterial({
-		color: 'rgb(120,120,120)',
-		side: THREE.DoubleSide,
-		shading: THREE.SmoothShading
-	});
 
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj');
 }
@@ -55,7 +54,7 @@ function loadOBJ(fileName) {
 
 		object.traverse(function (child) {
 			if (child.isMesh) {
-				child.material = material;
+				child.material = objMaterial;
 				child.castShadow = true;
 				child.geometry.computeVertexNormals(true);
 			}
