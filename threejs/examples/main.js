@@ -7,7 +7,9 @@ let object;
 let scene, camera, controls;
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
-	side: THREE.DoubleSide
+	side: THREE.DoubleSide,
+	opacity: 0.1,
+	transparent: true
 });
 
 function init(){
