@@ -16,10 +16,12 @@ function init(){
 		10000
 	);
 
-	var light = getDirectionalLight(1);
+	var light = getDirectionalLight(2);
+	var ambientLight = getAmbientLight(1)
 	light.position.y = 4;
-	light.intensity = 2;
 	scene.add(light);
+	scene.add(ambientLight);
+
 	gui.add(light, 'intensity', 0, 10);
 	gui.add(light.position, 'x', 0, 20);
 	gui.add(light.position, 'y', 0, 20);
@@ -74,6 +76,10 @@ function getDirectionalLight(intensity) {
 	light.castShadow = true;
 
 	return light;
+}
+
+function getAmbientLight(intensity) {
+	var light = THREE.AmbientLight('rgb(255,255,255)')
 }
 
 function update(renderer, scene, camera, controls) {
