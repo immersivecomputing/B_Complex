@@ -81,6 +81,8 @@ function getDirectionalLight(intensity) {
 
 function getAmbientLight(intensity) {
 	var light = new THREE.AmbientLight('rgb(255,255,255)');
+
+	return light;
 }
 
 function update(renderer, scene, camera, controls) {
