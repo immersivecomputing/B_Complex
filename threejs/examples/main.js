@@ -35,7 +35,8 @@ function init(){
 	
 	var material = new THREE.MeshPhongMaterial({
 		color: 'rgb(120,120,120)',
-		side: THREE.DoubleSide
+		side: THREE.DoubleSide,
+		shading: THREE.SmoothShading
 	});
 	const loader = new OBJLoader();
 	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
