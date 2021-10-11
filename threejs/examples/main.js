@@ -7,8 +7,7 @@ let object;
 let scene, camera, controls;
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
-	side: THREE.DoubleSide,
-	shading: THREE.SmoothShading
+	side: THREE.DoubleSide
 });
 
 function init(){
@@ -84,7 +83,7 @@ function getDirectionalLight(intensity) {
 }
 
 function getAmbientLight(intensity) {
-	var light = new THREE.AmbientLight('rgb(255,255,255)');
+	var light = new THREE.AmbientLight('rgb(255,255,255)', intensity);
 
 	return light;
 }
