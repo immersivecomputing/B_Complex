@@ -4,12 +4,13 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GUI } from './jsm/libs/dat.gui.module.js';
 
 let object;
+let scene, camera, controls;
 
 function init(){
-	var scene = new THREE.Scene();
+	scene = new THREE.Scene();
 	var gui = new GUI();
 
-	var camera = new THREE.PerspectiveCamera(
+	camera = new THREE.PerspectiveCamera(
 		45,
 		window.innerWidth/window.innerHeight,
 		1,
@@ -22,7 +23,7 @@ function init(){
 	scene.add(light);
 	scene.add(ambientLight);
 
-	gui.add(ambientLight, 'intensity', 0, 10);
+	gui.add(ambientLight, 'intensity', 0.0, 5.0);
 	gui.add(light, 'intensity', 0, 10);
 	gui.add(light.position, 'x', 0, 20);
 	gui.add(light.position, 'y', 0, 20);
@@ -32,7 +33,7 @@ function init(){
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
-	var controls = new OrbitControls(camera, renderer.domElement);
+	controls = new OrbitControls(camera, renderer.domElement);
 
 	update(renderer, scene, camera, controls);
 	
@@ -41,13 +42,18 @@ function init(){
 		side: THREE.DoubleSide,
 		shading: THREE.SmoothShading
 	});
+
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj');
+}
+
+function loadOBJ(fileName) {
 	const loader = new OBJLoader();
-	loader.load( '/B_Complex/OBJFiles/bcomplex_ert_0000.obj', function ( obj ) {
+	loader.load(fileName, function (obj) {
 
 		object = obj;
 		object.rotation.x = -Math.PI / 2;
 
-		object.traverse( function(child){
+		object.traverse(function (child) {
 			if (child.isMesh) {
 				child.material = material;
 				child.castShadow = true;
@@ -68,8 +74,7 @@ function init(){
 
 		scene.add(object);
 
-	} );
-	
+	});
 }
 
 function getDirectionalLight(intensity) {
