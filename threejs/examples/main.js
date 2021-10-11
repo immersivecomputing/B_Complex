@@ -43,15 +43,15 @@ function init(){
 
 	update(renderer, scene, camera, controls);
 
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 0);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 1);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 2);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 3);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 4);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 5);
 }
 
-function loadOBJ(fileName) {
+function loadOBJ(fileName, renderOrder) {
 	const loader = new OBJLoader();
 	loader.load(fileName, function (obj) {
 
@@ -76,6 +76,8 @@ function loadOBJ(fileName) {
 		camera.position.set(bbox.min.x, bbox.max.y, bbox.min.z);
 		camera.lookAt(middle.x, middle.y, middle.z);
 		controls.target.set(middle.x, middle.y, middle.z);
+
+		object.renderOrder(renderOrder);
 
 		scene.add(object);
 
