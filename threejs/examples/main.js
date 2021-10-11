@@ -29,11 +29,12 @@ function init(){
 	scene.add(light);
 	scene.add(ambientLight);
 
-	gui.add(ambientLight, 'intensity', 0.0, 5.0);
-	gui.add(light, 'intensity', 0, 10);
-	gui.add(light.position, 'x', 0, 20);
-	gui.add(light.position, 'y', 0, 20);
-	gui.add(light.position, 'z', 0, 20);
+	var folder1 = gui.addFolder('Lighting');
+	folder1.add(ambientLight, 'intensity', 0.0, 5.0).name('Amb. Intensity');
+	folder1.add(light, 'intensity', 0, 10).name('Dir. Intensity');
+	folder1.add(light.position, 'x', 0, 20).name('Dir. x-position');
+	folder1.add(light.position, 'y', 0, 20).name('Dir. y-position');
+	folder1.add(light.position, 'z', 0, 20).name('Dir. z-position');
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
