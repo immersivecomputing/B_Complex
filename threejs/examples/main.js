@@ -2,6 +2,7 @@ import * as THREE from '../build/three.module.js';
 import { OBJLoader } from './jsm/loaders/OBJLoader.js';
 import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GUI } from './jsm/libs/dat.gui.module.js';
+import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv1Z5ERe/dist=es2020,mode=imports/optimized/d3-dsv.js";
 
 let object;
 let scene, camera, controls;
@@ -11,6 +12,10 @@ var objMaterial = new THREE.MeshPhongMaterial({
 	opacity: 0.1,
 	transparent: true
 });
+
+var tankMaterial = new THREE.MeshPhongMaterial({
+	color: 'rgb(255,0,0)'
+})
 
 function init(){
 	scene = new THREE.Scene();
@@ -50,7 +55,48 @@ function init(){
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0);
+
+	loadCSV('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
 }
+
+function loadCSV(fileName, rowMin, rowMax) {
+	const csvloader = new THREE.FileLoader();
+	csvloader.load(fileName,
+		function (data) {
+			csvData = csvParse(data);
+			//let v3array = [];
+			for (let i = rowMin; i < rowMax; i++) {
+				if (parseFloat(csvData[i].Depth) >= parseFloat(csvData[i - 1].Depth)) {
+					let xpos = parseFloat(csvData[i - 1].X);
+					let ypos = parseFloat(csvData[i - 1].Y);
+					let zpos = 0;
+					//v3array.push(new THREE.Vector3(xpos, ypos, zpos));
+					getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
+				}
+			}
+		}
+	);
+}
+
+function getGeometry(type, size, material, xpos, ypos, zpos) {
+	var geometry;
+	var segmentMultiplier = 1;
+	switch (type) {
+		case 'sphere':
+			geometry = new THREE.SphereGeometry(size, 32 * segmentMultiplier, 32 * segmentMultiplier);
+			break;
+		default:
+			break;
+	}
+
+	var obj = new THREE.Mesh(geometry, material);
+	obj.castShadow = true;
+	obj.name = type;
+	obj.position.set(xpos, ypos, zpos);
+
+	scene.add(obj);
+}
+
 
 function loadOBJ(fileName, renderOrder) {
 	const loader = new OBJLoader();
