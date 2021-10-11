@@ -17,7 +17,7 @@ function init(){
 	);
 
 	var light = getDirectionalLight(1);
-	scene.add(spotLight);
+	scene.add(light);
 	gui.add(light, 'intensity', 0, 10);
 	gui.add(light.position, 'x', 0, 20);
 	gui.add(light.position, 'y', 0, 20);
