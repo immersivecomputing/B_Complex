@@ -201,13 +201,20 @@ function createAxisText(x,y,z, axisName, label) {
 		var axis = new THREE.Mesh(textGeo, textMaterial);
 
 		if (axisName == 'xmin') {
-			axis.rotation.x = Math.PI/2;
+			axis.rotation.x = -Math.PI / 2;
+			axis.rotation.y = -Math.PI / 2;
+		}
+		if (axisName == 'xmax') {
+			axis.rotation.x = -Math.PI / 2;
+			axis.rotation.y = -Math.PI / 2;
 		}
 		if (axisName == 'ymin') {
-			axis.rotation.y = Math.PI / 2;
 		}
 		if (axisName == 'zmin') {
-			axis.rotation.z = Math.PI / 2;
+			axis.rotation.x = -Math.PI / 2;
+		}
+		if (axisName == 'zmax') {
+			axis.rotation.x = -Math.PI / 2;
 		}
 
 
