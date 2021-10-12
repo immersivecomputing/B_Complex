@@ -160,6 +160,7 @@ function setCameraAndBBox(object) {
 		scene.add(boundingBoxHelper);
 
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, xmin, ebbox.min.x);
+		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.min.z, xmax, ebbox.max.x);
 	}
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
