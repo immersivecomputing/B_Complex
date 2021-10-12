@@ -65,7 +65,7 @@ function init(){
 
 	console.log(loadedOBJs);
 	var folder2 = gui.addFolder('Surfaces');
-	folder2.add(objParams, 'num', 0, 5).onChange(function (value) {
+	folder2.add(objParams, 'num', 0, 5).name('Show Surface').onChange(function (value) {
 		loadedOBJs.traverse(function (child) {
 			if (parseInt(child.name) > value) {
 				child.visible = false;
