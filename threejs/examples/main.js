@@ -199,7 +199,7 @@ function setCameraAndBBox(object) {
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, 'zmax', -ebbox.min.z);
 	}
 
-	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
+	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z - 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
 }
