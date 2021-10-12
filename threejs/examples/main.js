@@ -10,9 +10,9 @@ let scene, camera, controls;
 var ebbox = new THREE.Box3();
 let xmin, xmax, ymin, ymax, zmin, zmax;
 
-var objParams = {
-	num = 5
-}
+const objParams = {
+	num: 5
+};
 
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
