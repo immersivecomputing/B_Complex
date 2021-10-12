@@ -10,6 +10,10 @@ let scene, camera, controls;
 var ebbox = new THREE.Box3();
 let xmin, xmax, ymin, ymax, zmin, zmax;
 
+var objParams = {
+	num = 5
+}
+
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
 	side: THREE.DoubleSide,
@@ -60,7 +64,7 @@ function init(){
 	scene.add(loadedWells);
 
 	var folder2 = gui.addFolder('Surfaces');
-	folder2.add(loadedOBJs, 'name', 0, 5);
+	folder2.add(objParams, 'num', 0, 5);
 	var folder3 = gui.addFolder('Features');
 	folder3.add(loadedTanks, 'visible').name('Tanks').setValue(false);
 	folder3.add(loadedWells, 'visible').name('Wells').setValue(false);
