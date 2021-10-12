@@ -212,6 +212,7 @@ function createAxisText(x,y,z, axisName, label) {
 		}
 		if (axisName == 'zmin') {
 			axis.rotation.x = -Math.PI / 2;
+			console.log(axis);
 		}
 		if (axisName == 'zmax') {
 			axis.rotation.x = -Math.PI / 2;
