@@ -63,6 +63,7 @@ function init(){
 	scene.add(loadedTanks);
 	scene.add(loadedWells);
 
+	console.log(loadedOBJs);
 	var folder2 = gui.addFolder('Surfaces');
 	folder2.add(objParams, 'num', 0, 5);
 	var folder3 = gui.addFolder('Features');
