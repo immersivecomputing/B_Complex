@@ -86,7 +86,7 @@ function loadCSV2D(fileName, rowMin, rowMax) {
 	);
 }
 
-function loadCSV2D(fileName) {
+function loadCSV3D(fileName) {
 	const csvloader = new THREE.FileLoader();
 	csvloader.load(fileName,
 		function (data) {
