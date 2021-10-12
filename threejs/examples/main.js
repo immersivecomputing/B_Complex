@@ -52,6 +52,7 @@ function init(){
 
 	var loadedOBJs = new THREE.Group();
 	loadedOBJs.name = 'OBJContainer';
+	scene.add(loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs);
@@ -59,9 +60,9 @@ function init(){
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs);
 
-	scene.add(loadedOBJs);
+	
 
-	setCameraAndBBox(loadedOBJs);
+	
 
 	loadCSV('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
 }
@@ -122,6 +123,7 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		object.renderOrder = renderOrder;
 
 		objContainer.add(object);
+		setCameraAndBBox(objContainer);
 		//scene.add(object);
 
 	});
