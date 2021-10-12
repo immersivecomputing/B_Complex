@@ -61,8 +61,8 @@ function init(){
 
 	var folder2 = gui.addFolder('Surfaces');
 	var folder3 = gui.addFolder('Features');
-	folder3.add(loadedTanks, 'visible').name('Tanks');
-	folder3.add(loadedWells, 'visible').name('Wells');
+	folder3.add(loadedTanks, 'visible').name('Tanks').setValue(false);
+	folder3.add(loadedWells, 'visible').name('Wells').setValue(false);
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
