@@ -138,6 +138,7 @@ function setCameraAndBBox(object) {
 
 	if (bbox.min.x < ebbox.min.x) {
 		ebbox.min.x = bbox.min.x;
+		scene.getObjectByName('xmin').position.x = ebbox.min.x;
 		//xmin.position.x = ebbox.min.x;
 	}
 	if (bbox.min.y < ebbox.min.y) {
@@ -166,12 +167,12 @@ function setCameraAndBBox(object) {
 		boundingBoxHelper.name = 'boundingBox';
 		scene.add(boundingBoxHelper);
 
-		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, xmin, ebbox.min.x);
-		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, xmax, ebbox.max.x);
-		createAxisText(ebbox.min.x, middle.y, ebbox.max.z, ymin, ebbox.min.y);
-		createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, ymax, ebbox.max.y);
-		createAxisText(ebbox.min.x, ebbox.min.y, middle.z, zmin, -ebbox.max.z);
-		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, zmax, -ebbox.min.z);
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
+		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
+		createAxisText(ebbox.min.x, middle.y, ebbox.max.z, 'ymin', ebbox.min.y);
+		createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, 'ymax', ebbox.max.y);
+		createAxisText(ebbox.min.x, ebbox.min.y, middle.z, 'zmin', -ebbox.max.z);
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, 'zmax', -ebbox.min.z);
 	}
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
@@ -179,9 +180,7 @@ function setCameraAndBBox(object) {
 	controls.target.set(middle.x, middle.y, middle.z);
 }
 
-function createAxisText(x,y,z, axis, label) {
-
-	
+function createAxisText(x,y,z, axisName, label) {
 
 	const loader = new FontLoader();
 	loader.load('fonts/helvetiker_regular.typeface.json', function (response) {
@@ -198,17 +197,14 @@ function createAxisText(x,y,z, axis, label) {
 		var color = new THREE.Color();
 		color.setRGB(255, 250, 250);
 		var textMaterial = new THREE.MeshBasicMaterial({ color: color });
-		axis = new THREE.Mesh(textGeo, textMaterial);
+		var axis = new THREE.Mesh(textGeo, textMaterial);
 
 		axis.position.x = x;
 		axis.position.y = y;
 		axis.position.z = z;
+		axis.name = axisName;
 
-		console.log(axis);
-		
 		scene.add(axis);
-
-
 	});
 
 }
