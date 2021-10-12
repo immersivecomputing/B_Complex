@@ -55,6 +55,8 @@ function init(){
 	update(renderer, scene, camera, controls);
 
 
+
+	console.log(ebbox);
 	var loadedOBJs = new THREE.Group();
 	loadedOBJs.name = 'OBJContainer';
 	scene.add(loadedOBJs);
@@ -124,8 +126,6 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		object.renderOrder = renderOrder;
 
 		objContainer.add(object);
-
-		console.log(ebbox);
 		setCameraAndBBox(objContainer);
 	});
 }
