@@ -4,7 +4,6 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GUI } from './jsm/libs/dat.gui.module.js';
 import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv1Z5ERe/dist=es2020,mode=imports/optimized/d3-dsv.js";
 
-//let object;
 let scene, camera, controls;
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
@@ -16,6 +15,7 @@ var objMaterial = new THREE.MeshPhongMaterial({
 var tankMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,0,0)'
 })
+
 
 function init(){
 	scene = new THREE.Scene();
@@ -124,14 +124,20 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 
 		objContainer.add(object);
 		setCameraAndBBox(objContainer);
-		//scene.add(object);
-
 	});
 }
 
 function setCameraAndBBox(object) {
 	var middle = new THREE.Vector3();
 	var bbox = new THREE.Box3().setFromObject(object);
+
+	const wireframe = new THREE.WireframeGeometry(bbox.geometry);
+	const line = new THREE.LineSegments(wireframe);
+	line.material.depthTest = false;
+	line.material.opacity = 0.25;
+	line.material.transparent = true;
+
+	scene.add(line);
 
 	middle.x = (bbox.max.x + bbox.min.x) / 2;
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
