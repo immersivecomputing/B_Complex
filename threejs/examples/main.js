@@ -170,9 +170,9 @@ function setCameraAndBBox(object) {
 
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
 		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
-		createAxisText(ebbox.min.x, middle.y, ebbox.max.z, 'ymin', ebbox.min.y);
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'ymin', ebbox.min.y);
 		createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, 'ymax', ebbox.max.y);
-		createAxisText(ebbox.min.x, ebbox.min.y, middle.z, 'zmin', -ebbox.max.z);
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'zmin', -ebbox.max.z);
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, 'zmax', -ebbox.min.z);
 	}
 
@@ -200,7 +200,7 @@ function createAxisText(x,y,z, axisName, label) {
 		var textMaterial = new THREE.MeshBasicMaterial({ color: color });
 		var axis = new THREE.Mesh(textGeo, textMaterial);
 
-		if (axis == 'xmin') {
+		if (axisName == 'xmin') {
 			axis.rotation.x = Math.PI;
 			axis.rotation.y = Math.PI;
         }
