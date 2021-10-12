@@ -136,7 +136,7 @@ function setCameraAndBBox(object) {
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
-	console.log(bbox);
+	console.log(ebbox);
 
 	if (ebbox.min === undefined) {
 		ebbox = bbox;
