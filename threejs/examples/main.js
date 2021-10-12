@@ -161,6 +161,7 @@ function setCameraAndBBox(object) {
 
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, xmin, ebbox.min.x);
 		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, xmax, ebbox.max.x);
+		createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, ymax, ebbox.max.y);
 	}
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
