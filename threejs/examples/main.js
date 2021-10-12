@@ -4,7 +4,7 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GUI } from './jsm/libs/dat.gui.module.js';
 import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv1Z5ERe/dist=es2020,mode=imports/optimized/d3-dsv.js";
 
-let object;
+//let object;
 let scene, camera, controls;
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
@@ -49,12 +49,19 @@ function init(){
 
 	update(renderer, scene, camera, controls);
 
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0);
+
+	var loadedOBJs = new THREE.Object3D();
+	loadedOBJs.name = 'OBJContainer';
+	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5));
+	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4));
+	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3));
+	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2));
+	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1));
+	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0));
+
+	scene.add(loadedOBJs);
+
+	setCameraAndBBox(loadedOBJs);
 
 	loadCSV('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
 }
@@ -100,7 +107,7 @@ function loadOBJ(fileName, renderOrder) {
 	const loader = new OBJLoader();
 	loader.load(fileName, function (obj) {
 
-		object = obj;
+		var object = obj;
 		object.rotation.x = -Math.PI / 2;
 
 		object.traverse(function (child) {
@@ -111,24 +118,27 @@ function loadOBJ(fileName, renderOrder) {
 			}
 		});
 
-		var middle = new THREE.Vector3();
-		var bbox = new THREE.Box3().setFromObject(object);
-
-		middle.x = (bbox.max.x + bbox.min.x) / 2;
-		middle.y = (bbox.max.y + bbox.min.y) / 2;
-		middle.z = (bbox.max.z + bbox.min.z) / 2;
-
-		camera.position.set(bbox.min.x, bbox.max.y, bbox.min.z);
-		camera.lookAt(middle.x, middle.y, middle.z);
-		controls.target.set(middle.x, middle.y, middle.z);
-
-		console.log(controls);
-
+		
 		object.renderOrder = renderOrder;
 
-		scene.add(object);
+		return object;
+		//scene.add(object);
 
 	});
+}
+
+function setCameraAndBBox(object) {
+	var middle = new THREE.Vector3();
+	var bbox = new THREE.Box3().setFromObject(object);
+
+	middle.x = (bbox.max.x + bbox.min.x) / 2;
+	middle.y = (bbox.max.y + bbox.min.y) / 2;
+	middle.z = (bbox.max.z + bbox.min.z) / 2;
+
+	camera.position.set(bbox.min.x, bbox.max.y, bbox.min.z);
+	camera.lookAt(middle.x, middle.y, middle.z);
+	controls.target.set(middle.x, middle.y, middle.z);
+
 }
 
 function getDirectionalLight(intensity) {
