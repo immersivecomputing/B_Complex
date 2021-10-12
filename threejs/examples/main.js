@@ -202,11 +202,11 @@ function createAxisText(x,y,z, axisName, label) {
 
 		if (axisName == 'xmin') {
 			axis.rotation.x = -Math.PI / 2;
-			axis.rotation.y = -Math.PI / 2;
+			axis.rotation.z = -Math.PI / 2;
 		}
 		if (axisName == 'xmax') {
 			axis.rotation.x = -Math.PI / 2;
-			axis.rotation.y = -Math.PI / 2;
+			axis.rotation.z = -Math.PI / 2;
 		}
 		if (axisName == 'ymin') {
 		}
