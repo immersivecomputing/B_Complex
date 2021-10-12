@@ -50,6 +50,9 @@ function init(){
 	folder1.add(light.position, 'y', 0, 20).name('Dir. y-position');
 	folder1.add(light.position, 'z', 0, 20).name('Dir. z-position');
 
+	var folder2 = gui.addFolder('Surfaces');
+	var folder3 = gui.addFolder('Features');
+
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.getElementById('webgl').appendChild(renderer.domElement);
@@ -81,7 +84,7 @@ function loadCSV2D(fileName, rowMin, rowMax) {
 			for (let i = rowMin; i < rowMax; i++) {
 				
 				let xpos = parseFloat(csvData[i - 1].X);
-				let ypos = 200;
+				let ypos = 203.132;
 				let zpos = parseFloat(csvData[i - 1].Y) * -1;
 				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
 				
