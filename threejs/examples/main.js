@@ -172,7 +172,7 @@ function getAxisText(x,y,z) {
 	const loader = new FontLoader();
 	loader.load('fonts/helvetiker_regular.typeface.json', function (response) {
 
-		font = response;
+		var font = response;
 
 		var textGeo = new THREE.TextGeometry('Y', {
 			size: 5,
