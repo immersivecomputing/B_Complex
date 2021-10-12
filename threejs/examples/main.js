@@ -8,6 +8,7 @@ import { FontLoader } from './jsm/loaders/FontLoader.js';
 
 let scene, camera, controls;
 var ebbox = new THREE.Box3();
+let xmin, xmax, ymin, ymax, zmin, zmax;
 
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
@@ -137,6 +138,7 @@ function setCameraAndBBox(object) {
 
 	if (ebbox.min == undefined) {
 		ebbox = bbox;
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, xmin, ebbox.min.x);
 	} else {
 		if (bbox.min.x < ebbox.min.x) {
 			ebbox.min.x = bbox.min.x;
@@ -159,7 +161,7 @@ function setCameraAndBBox(object) {
     }
 
 	var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
-	getAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z)
+	createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z)
 	scene.add(boundingBoxHelper);
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
@@ -167,14 +169,14 @@ function setCameraAndBBox(object) {
 	controls.target.set(middle.x, middle.y, middle.z);
 }
 
-function getAxisText(x,y,z) {
+function createAxisText(x,y,z, axis, label) {
 
 	const loader = new FontLoader();
 	loader.load('fonts/helvetiker_regular.typeface.json', function (response) {
 
 		var font = response;
 
-		var textGeo = new THREE.TextGeometry('Y', {
+		var textGeo = new THREE.TextGeometry(label, {
 			size: 5,
 			height: 2,
 			curveSegments: 6,
@@ -184,11 +186,11 @@ function getAxisText(x,y,z) {
 		var color = new THREE.Color();
 		color.setRGB(255, 250, 250);
 		var textMaterial = new THREE.MeshBasicMaterial({ color: color });
-		var text = new THREE.Mesh(textGeo, textMaterial);
+		axis = new THREE.Mesh(textGeo, textMaterial);
 
-		text.position.x = x;
-		text.position.y = y;
-		text.position.z = z;
+		axis.position.x = x;
+		axis.position.y = y;
+		axis.position.z = z;
 		
 		scene.add(text);
 
