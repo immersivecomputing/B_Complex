@@ -159,11 +159,41 @@ function setCameraAndBBox(object) {
     }
 
 	var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+	getAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z)
 	scene.add(boundingBoxHelper);
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
+}
+
+function getAxisText(x,y,z) {
+
+	const loader = new FontLoader();
+	loader.load('fonts/helvetiker_regular.typeface.json', function (response) {
+
+		font = response;
+
+		var textGeo = new THREE.TextGeometry('Y', {
+			size: 5,
+			height: 2,
+			curveSegments: 6,
+			font: font
+		});
+
+		var color = new THREE.Color();
+		color.setRGB(255, 250, 250);
+		var textMaterial = new THREE.MeshBasicMaterial({ color: color });
+		var text = new THREE.Mesh(textGeo, textMaterial);
+
+		text.position.x = x;
+		text.position.y = y;
+		text.position.z = z;
+		
+		scene.add(text);
+
+	});
+
 }
 
 function getDirectionalLight(intensity) {
