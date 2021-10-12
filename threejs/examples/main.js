@@ -65,7 +65,15 @@ function init(){
 
 	console.log(loadedOBJs);
 	var folder2 = gui.addFolder('Surfaces');
-	folder2.add(objParams, 'num', 0, 5);
+	folder2.add(objParams, 'num', 0, 5).onChange(function (value) {
+		loadedOBJs.traverse(function (child) {
+			if (parseInt(child.name) > value) {
+				child.visible = false;
+            } else {
+				child.visible = true;
+            }
+		}
+	});
 	var folder3 = gui.addFolder('Features');
 	folder3.add(loadedTanks, 'visible').name('Tanks').setValue(false);
 	folder3.add(loadedWells, 'visible').name('Wells').setValue(false);
