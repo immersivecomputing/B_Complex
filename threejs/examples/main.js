@@ -64,11 +64,12 @@ function init(){
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs);
 
-	loadCSV('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
+	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
+	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv');
 	
 }
 
-function loadCSV(fileName, rowMin, rowMax) {
+function loadCSV2D(fileName, rowMin, rowMax) {
 	const csvloader = new THREE.FileLoader();
 	csvloader.load(fileName,
 		function (data) {
@@ -80,6 +81,23 @@ function loadCSV(fileName, rowMin, rowMax) {
 				let zpos = parseFloat(csvData[i - 1].Y) * -1;
 				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
 				
+			}
+		}
+	);
+}
+
+function loadCSV2D(fileName) {
+	const csvloader = new THREE.FileLoader();
+	csvloader.load(fileName,
+		function (data) {
+			var csvData = csvParse(data);
+			for (let i = 0; i < csvData.length; i++) {
+
+				let xpos = parseFloat(csvData[i].X);
+				let ypos = parseFloat(csvData[i].Z);
+				let zpos = parseFloat(csvData[i].Y) * -1;
+				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
+
 			}
 		}
 	);
