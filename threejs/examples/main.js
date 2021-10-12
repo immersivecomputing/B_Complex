@@ -161,7 +161,7 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		});
 
 		object.renderOrder = renderOrder;
-		object.name = 'obj_' + renderOrder.toString();
+		object.name = renderOrder.toString();
 
 		objContainer.add(object);
 		setCameraAndBBox(objContainer);
