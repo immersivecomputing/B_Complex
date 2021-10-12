@@ -137,21 +137,27 @@ function setCameraAndBBox(object) {
 
 	if (bbox.min.x < ebbox.min.x) {
 		ebbox.min.x = bbox.min.x;
+		xmin.position.x = ebbox.min.x;
 	}
 	if (bbox.min.y < ebbox.min.y) {
 		ebbox.min.y = bbox.min.y;
+		ymin.position.y = ebbox.min.y;
 	}
 	if (bbox.min.z < ebbox.min.z) {
 		ebbox.min.z = bbox.min.z;
+		zmax.position.z = ebbox.min.z;
 	}
 	if (bbox.max.x > ebbox.max.x) {
 		ebbox.max.x = bbox.max.x;
+		xmax.position.x = ebbox.max.x;
 	}
 	if (bbox.max.y > ebbox.max.y) {
 		ebbox.max.y = bbox.max.y;
+		ymax.position.y = ebbox.max.y;
 	}
 	if (bbox.max.z > ebbox.max.z) {
 		ebbox.max.z = bbox.max.z;
+		zmin.position.z = ebbox.max.z;
 	}
 
 	if (!scene.getObjectByName('boundingBox')) {
