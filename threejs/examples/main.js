@@ -54,9 +54,6 @@ function init(){
 
 	update(renderer, scene, camera, controls);
 
-
-
-	console.log(ebbox);
 	var loadedOBJs = new THREE.Group();
 	loadedOBJs.name = 'OBJContainer';
 	scene.add(loadedOBJs);
@@ -138,10 +135,10 @@ function setCameraAndBBox(object) {
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
-	if (ebbox.min === undefined) {
-		ebbox = bbox;
-		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, xmin, ebbox.min.x);
-	} else {
+	//if (ebbox.min === undefined) {
+	//	ebbox = bbox;
+	//	createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, xmin, ebbox.min.x);
+	//} else {
 		if (bbox.min.x < ebbox.min.x) {
 			ebbox.min.x = bbox.min.x;
 		}
@@ -160,11 +157,12 @@ function setCameraAndBBox(object) {
 		if (bbox.max.z > ebbox.max.z) {
 			ebbox.max.z = bbox.max.z;
 		}
-    }
+    //}
 
 	var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
 	scene.add(boundingBoxHelper);
 
+	console.log(scene);
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
