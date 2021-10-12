@@ -50,7 +50,7 @@ function init(){
 	update(renderer, scene, camera, controls);
 
 
-	var loadedOBJs = new THREE.Object3D();
+	var loadedOBJs = new THREE.Group();
 	loadedOBJs.name = 'OBJContainer';
 	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5));
 	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4));
