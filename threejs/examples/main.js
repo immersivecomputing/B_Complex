@@ -60,7 +60,7 @@ function init(){
 	scene.add(loadedWells);
 
 	var folder2 = gui.addFolder('Surfaces');
-	folder2.add(loadedOBJs, 'name').min(0).max(5);
+	folder2.add(loadedOBJs, 'name', 0, 5);
 	var folder3 = gui.addFolder('Features');
 	folder3.add(loadedTanks, 'visible').name('Tanks').setValue(false);
 	folder3.add(loadedWells, 'visible').name('Wells').setValue(false);
