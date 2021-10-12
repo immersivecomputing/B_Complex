@@ -136,18 +136,7 @@ function setCameraAndBBox(object) {
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
-	if (!scene.getObjectByName('boundingBox')) {
-		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
-		boundingBoxHelper.name = 'boundingBox';
-		scene.add(boundingBoxHelper);
-
-		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
-		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
-		createAxisText(ebbox.min.x, middle.y, ebbox.max.z, 'ymin', ebbox.min.y);
-		createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, 'ymax', ebbox.max.y);
-		createAxisText(ebbox.min.x, ebbox.min.y, middle.z, 'zmin', -ebbox.max.z);
-		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, 'zmax', -ebbox.min.z);
-	}
+	
 
 	if (bbox.min.x < ebbox.min.x) {
 		ebbox.min.x = bbox.min.x;
@@ -172,6 +161,19 @@ function setCameraAndBBox(object) {
 	if (bbox.max.z > ebbox.max.z) {
 		ebbox.max.z = bbox.max.z;
 		updateAxisText(ebbox);
+	}
+
+	if (!scene.getObjectByName('boundingBox')) {
+		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+		boundingBoxHelper.name = 'boundingBox';
+		scene.add(boundingBoxHelper);
+
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
+		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
+		createAxisText(ebbox.min.x, middle.y, ebbox.max.z, 'ymin', ebbox.min.y);
+		createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, 'ymax', ebbox.max.y);
+		createAxisText(ebbox.min.x, ebbox.min.y, middle.z, 'zmin', -ebbox.max.z);
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, 'zmax', -ebbox.min.z);
 	}
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
