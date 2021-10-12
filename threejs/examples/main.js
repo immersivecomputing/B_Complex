@@ -190,7 +190,7 @@ function createAxisText(x,y,z, axis, label) {
 		axis.position.y = y;
 		axis.position.z = z;
 		
-		scene.add(text);
+		scene.add(axis);
 
 	});
 
