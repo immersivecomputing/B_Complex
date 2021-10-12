@@ -132,7 +132,7 @@ function setCameraAndBBox(object) {
 	var bbox = new THREE.Box3().setFromObject(object);
 
 	console.log(bbox);
-	var boundingBoxHelper = new THREE.Box3Helper(box, 0xffff00);
+	var boundingBoxHelper = new THREE.Box3Helper(bbox, 0xffff00);
 	scene.add(boundingBoxHelper);
 
 	middle.x = (bbox.max.x + bbox.min.x) / 2;
