@@ -176,7 +176,7 @@ function createAxisText(x,y,z, axis, label) {
 
 		var font = response;
 
-		var textGeo = new THREE.TextGeometry(label, {
+		var textGeo = new THREE.TextGeometry(label.toString(), {
 			size: 5,
 			height: 2,
 			curveSegments: 6,
