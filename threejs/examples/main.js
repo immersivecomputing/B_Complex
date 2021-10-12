@@ -71,8 +71,6 @@ function init(){
 	controls = new OrbitControls(camera, renderer.domElement);
 
 	update(renderer, scene, camera, controls);
-
-	
 	
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs);
@@ -81,12 +79,12 @@ function init(){
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs);
 
-	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
-	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv');
+	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820, loadedTanks);
+	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
 	
 }
 
-function loadCSV2D(fileName, rowMin, rowMax) {
+function loadCSV2D(fileName, rowMin, rowMax, threeGroup) {
 	const csvloader = new THREE.FileLoader();
 	csvloader.load(fileName,
 		function (data) {
@@ -96,14 +94,14 @@ function loadCSV2D(fileName, rowMin, rowMax) {
 				let xpos = parseFloat(csvData[i - 1].X);
 				let ypos = 203.132;
 				let zpos = parseFloat(csvData[i - 1].Y) * -1;
-				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos, loadedTanks);
+				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos, threeGroup);
 				
 			}
 		}
 	);
 }
 
-function loadCSV3D(fileName) {
+function loadCSV3D(fileName, threeGroup) {
 	const csvloader = new THREE.FileLoader();
 	csvloader.load(fileName,
 		function (data) {
@@ -114,7 +112,7 @@ function loadCSV3D(fileName) {
 					let xpos = parseFloat(csvData[i].X);
 					let ypos = parseFloat(csvData[i].Z);
 					let zpos = parseFloat(csvData[i].Y) * -1;
-					getGeometry('sphere', 1, wellMaterial, xpos, ypos, zpos, loadedWells);
+					getGeometry('sphere', 1, wellMaterial, xpos, ypos, zpos, threeGroup);
 				}
 			}
 		}
