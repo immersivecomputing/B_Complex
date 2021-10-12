@@ -69,10 +69,10 @@ function init(){
 		loadedOBJs.traverse(function (child) {
 			if (parseInt(child.name) > value) {
 				child.visible = false;
-            } else {
+			} else {
 				child.visible = true;
-            }
-		}
+			}
+		});
 	});
 	var folder3 = gui.addFolder('Features');
 	folder3.add(loadedTanks, 'visible').name('Tanks').setValue(false);
