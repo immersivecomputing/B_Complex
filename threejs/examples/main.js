@@ -132,13 +132,8 @@ function setCameraAndBBox(object) {
 	var bbox = new THREE.Box3().setFromObject(object);
 
 	console.log(bbox);
-	//const wireframe = new THREE.WireframeGeometry(bbox.geometry);
-	//const line = new THREE.LineSegments(wireframe);
-	//line.material.depthTest = false;
-	//line.material.opacity = 0.25;
-	//line.material.transparent = true;
-
-	//scene.add(line);
+	var boundingBoxHelper = new THREE.Box3Helper(box, 0xffff00);
+	scene.add(boundingBoxHelper);
 
 	middle.x = (bbox.max.x + bbox.min.x) / 2;
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
