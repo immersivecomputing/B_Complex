@@ -181,7 +181,7 @@ function setCameraAndBBox(object) {
 
 function createAxisText(x,y,z, axis, label) {
 
-	console.log(axis);
+	
 
 	const loader = new FontLoader();
 	loader.load('fonts/helvetiker_regular.typeface.json', function (response) {
@@ -204,6 +204,7 @@ function createAxisText(x,y,z, axis, label) {
 		axis.position.y = y;
 		axis.position.z = z;
 
+		console.log(axis);
 		
 		scene.add(axis);
 
