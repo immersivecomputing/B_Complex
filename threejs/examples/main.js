@@ -135,37 +135,33 @@ function setCameraAndBBox(object) {
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
-	//if (ebbox.min === undefined) {
-	//	ebbox = bbox;
-	//	createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, xmin, ebbox.min.x);
-	//} else {
-		if (bbox.min.x < ebbox.min.x) {
-			ebbox.min.x = bbox.min.x;
-		}
-		if (bbox.min.y < ebbox.min.y) {
-			ebbox.min.y = bbox.min.y;
-		}
-		if (bbox.min.z < ebbox.min.z) {
-			ebbox.min.z = bbox.min.z;
-		}
-		if (bbox.max.x > ebbox.max.x) {
-			ebbox.max.x = bbox.max.x;
-		}
-		if (bbox.max.y > ebbox.max.y) {
-			ebbox.max.y = bbox.max.y;
-		}
-		if (bbox.max.z > ebbox.max.z) {
-			ebbox.max.z = bbox.max.z;
-		}
-    //}
+	if (bbox.min.x < ebbox.min.x) {
+		ebbox.min.x = bbox.min.x;
+	}
+	if (bbox.min.y < ebbox.min.y) {
+		ebbox.min.y = bbox.min.y;
+	}
+	if (bbox.min.z < ebbox.min.z) {
+		ebbox.min.z = bbox.min.z;
+	}
+	if (bbox.max.x > ebbox.max.x) {
+		ebbox.max.x = bbox.max.x;
+	}
+	if (bbox.max.y > ebbox.max.y) {
+		ebbox.max.y = bbox.max.y;
+	}
+	if (bbox.max.z > ebbox.max.z) {
+		ebbox.max.z = bbox.max.z;
+	}
 
 	if (!scene.getObjectByName('boundingBox')) {
 		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
 		boundingBoxHelper.name = 'boundingBox';
 		scene.add(boundingBoxHelper);
+
+		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, xmin, ebbox.min.x);
 	}
 
-	console.log(scene);
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
