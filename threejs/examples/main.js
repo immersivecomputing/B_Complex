@@ -138,8 +138,9 @@ function setCameraAndBBox(object) {
 
 	if (bbox.min.x < ebbox.min.x) {
 		ebbox.min.x = bbox.min.x;
-		scene.getObjectByName('xmin').position.x = ebbox.min.x;
-		//xmin.position.x = ebbox.min.x;
+		if (scene.getObjectByName('xmin')) {
+			scene.getObjectByName('xmin').position.x = ebbox.min.x;
+		}
 	}
 	if (bbox.min.y < ebbox.min.y) {
 		ebbox.min.y = bbox.min.y;
