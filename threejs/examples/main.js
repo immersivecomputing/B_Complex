@@ -163,7 +163,7 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		object.traverse(function (child) {
 			if (child.isMesh) {
 				child.material = objMaterial;
-				child.castShadow = true;
+				child.castShadow = false;
 				child.geometry.computeVertexNormals(true);
 			}
 		});
