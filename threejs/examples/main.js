@@ -151,21 +151,27 @@ function setCameraAndBBox(object) {
 
 	if (bbox.min.x < ebbox.min.x) {
 		ebbox.min.x = bbox.min.x;
+		updateAxisText(ebbox);
 	}
 	if (bbox.min.y < ebbox.min.y) {
 		ebbox.min.y = bbox.min.y;
+		updateAxisText(ebbox);
 	}
 	if (bbox.min.z < ebbox.min.z) {
 		ebbox.min.z = bbox.min.z;
+		updateAxisText(ebbox);
 	}
 	if (bbox.max.x > ebbox.max.x) {
 		ebbox.max.x = bbox.max.x;
+		updateAxisText(ebbox);
 	}
 	if (bbox.max.y > ebbox.max.y) {
 		ebbox.max.y = bbox.max.y;
+		updateAxisText(ebbox);
 	}
 	if (bbox.max.z > ebbox.max.z) {
 		ebbox.max.z = bbox.max.z;
+		updateAxisText(ebbox);
 	}
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
@@ -207,22 +213,37 @@ function updateAxisText(boundingBox) {
 		var obj = scene.getObjectByName('xmin');
 		obj.position.x = boundingBox.min.x;
 		obj.position.y = boundingBox.min.y;
-		obj.position.z = boundingBox.min.z;
+		obj.position.z = boundingBox.max.z;
 	}
 	if (scene.getObjectByName('ymin')) {
-		scene.getObjectByName('ymin').position.y = boundingBox.min.y;
+		var obj = scene.getObjectByName('ymin');
+		obj.position.x = boundingBox.min.x;
+		obj.position.y = boundingBox.min.y;
+		obj.position.z = boundingBox.max.z;
 	}
 	if (scene.getObjectByName('zmax')) {
-		scene.getObjectByName('zmax').position.z = boundingBox.min.z;
+		var obj = scene.getObjectByName('zmax');
+		obj.position.x = boundingBox.min.x;
+		obj.position.y = boundingBox.min.y;
+		obj.position.z = boundingBox.min.z;
 	}
 	if (scene.getObjectByName('xmax')) {
-		scene.getObjectByName('xmax').position.x = boundingBox.max.x;
+		var obj = scene.getObjectByName('xmax');
+		obj.position.x = boundingBox.max.x;
+		obj.position.y = boundingBox.min.y;
+		obj.position.z = boundingBox.max.z;
 	}
 	if (scene.getObjectByName('ymax')) {
-		scene.getObjectByName('ymax').position.x = boundingBox.max.y;
+		var obj = scene.getObjectByName('ymax');
+		obj.position.x = boundingBox.min.x;
+		obj.position.y = boundingBox.max.y;
+		obj.position.z = boundingBox.max.z;
 	}
 	if (scene.getObjectByName('zmin')) {
-		scene.getObjectByName('zmin').position.z = boundingBox.max.z;
+		var obj = scene.getObjectByName('zmin');
+		obj.position.x = boundingBox.min.x;
+		obj.position.y = boundingBox.min.y;
+		obj.position.z = boundingBox.max.z;
 	}
 }
 
