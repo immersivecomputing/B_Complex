@@ -159,8 +159,11 @@ function setCameraAndBBox(object) {
 		}
     //}
 
-	var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
-	scene.add(boundingBoxHelper);
+	if (!scene.getObjectByName('boundingBox')) {
+		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+		boundingBoxHelper.name = 'boundingBox';
+		scene.add(boundingBoxHelper);
+	}
 
 	console.log(scene);
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
