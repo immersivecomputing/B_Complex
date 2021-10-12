@@ -21,6 +21,10 @@ var tankMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,0,0)'
 })
 
+var wellMaterial = new THREE.MeshPhongMaterial({
+	color: 'rgb(255,255,0)'
+})
+
 
 function init(){
 	scene = new THREE.Scene();
@@ -97,7 +101,7 @@ function loadCSV3D(fileName) {
 					let xpos = parseFloat(csvData[i].X);
 					let ypos = parseFloat(csvData[i].Z);
 					let zpos = parseFloat(csvData[i].Y) * -1;
-					getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
+					getGeometry('sphere', 1, wellMaterial, xpos, ypos, zpos);
 				}
 			}
 		}
