@@ -65,7 +65,7 @@ function init(){
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs);
 
 	loadCSV('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
-	console.log(xmin);
+	
 }
 
 function loadCSV(fileName, rowMin, rowMax) {
@@ -203,6 +203,8 @@ function createAxisText(x,y,z, axis, label) {
 		axis.position.z = z;
 		
 		scene.add(axis);
+
+		console.log(xmin);
 
 	});
 
