@@ -93,11 +93,12 @@ function loadCSV3D(fileName) {
 			var csvData = csvParse(data);
 			for (let i = 0; i < csvData.length; i++) {
 
-				let xpos = parseFloat(csvData[i].X);
-				let ypos = parseFloat(csvData[i].Z);
-				let zpos = parseFloat(csvData[i].Y) * -1;
-				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
-
+				if (csvData[i].Z != 0) {
+					let xpos = parseFloat(csvData[i].X);
+					let ypos = parseFloat(csvData[i].Z);
+					let zpos = parseFloat(csvData[i].Y) * -1;
+					getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
+				}
 			}
 		}
 	);
