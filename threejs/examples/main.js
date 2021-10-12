@@ -131,13 +131,14 @@ function setCameraAndBBox(object) {
 	var middle = new THREE.Vector3();
 	var bbox = new THREE.Box3().setFromObject(object);
 
-	const wireframe = new THREE.WireframeGeometry(bbox.geometry);
-	const line = new THREE.LineSegments(wireframe);
-	line.material.depthTest = false;
-	line.material.opacity = 0.25;
-	line.material.transparent = true;
+	console.log(bbox);
+	//const wireframe = new THREE.WireframeGeometry(bbox.geometry);
+	//const line = new THREE.LineSegments(wireframe);
+	//line.material.depthTest = false;
+	//line.material.opacity = 0.25;
+	//line.material.transparent = true;
 
-	scene.add(line);
+	//scene.add(line);
 
 	middle.x = (bbox.max.x + bbox.min.x) / 2;
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
