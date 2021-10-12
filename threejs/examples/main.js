@@ -50,8 +50,19 @@ function init(){
 	folder1.add(light.position, 'y', 0, 20).name('Dir. y-position');
 	folder1.add(light.position, 'z', 0, 20).name('Dir. z-position');
 
+	var loadedOBJs = new THREE.Group();
+	loadedOBJs.name = 'OBJContainer';
+	var loadedTanks = new THREE.Group();
+	var loadedWells = new THREE.Group();
+
+	scene.add(loadedOBJs);
+	scene.add(loadedTanks);
+	scene.add(loadedWells);
+
 	var folder2 = gui.addFolder('Surfaces');
 	var folder3 = gui.addFolder('Features');
+	folder3.add(loadedTanks, 'visible').name('Tanks');
+	folder3.add(loadedWells, 'visible').name('Wells');
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
@@ -61,9 +72,8 @@ function init(){
 
 	update(renderer, scene, camera, controls);
 
-	var loadedOBJs = new THREE.Group();
-	loadedOBJs.name = 'OBJContainer';
-	scene.add(loadedOBJs);
+	
+	
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs);
@@ -86,7 +96,7 @@ function loadCSV2D(fileName, rowMin, rowMax) {
 				let xpos = parseFloat(csvData[i - 1].X);
 				let ypos = 203.132;
 				let zpos = parseFloat(csvData[i - 1].Y) * -1;
-				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos);
+				getGeometry('sphere', 1, tankMaterial, xpos, ypos, zpos, loadedTanks);
 				
 			}
 		}
@@ -104,14 +114,14 @@ function loadCSV3D(fileName) {
 					let xpos = parseFloat(csvData[i].X);
 					let ypos = parseFloat(csvData[i].Z);
 					let zpos = parseFloat(csvData[i].Y) * -1;
-					getGeometry('sphere', 1, wellMaterial, xpos, ypos, zpos);
+					getGeometry('sphere', 1, wellMaterial, xpos, ypos, zpos, loadedWells);
 				}
 			}
 		}
 	);
 }
 
-function getGeometry(type, size, material, xpos, ypos, zpos) {
+function getGeometry(type, size, material, xpos, ypos, zpos, threeGroup) {
 	var geometry;
 	var segmentMultiplier = 1;
 	switch (type) {
@@ -127,7 +137,7 @@ function getGeometry(type, size, material, xpos, ypos, zpos) {
 	obj.name = type;
 	obj.position.set(xpos, ypos, zpos);
 
-	scene.add(obj);
+	threeGroup.add(obj);
 }
 
 
