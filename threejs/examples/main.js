@@ -136,9 +136,10 @@ function setCameraAndBBox(object) {
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
+	console.log(bbox);
+
 	if (ebbox.min === undefined) {
 		ebbox = bbox;
-		console.log(bbox);
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, xmin, ebbox.min.x);
 	} else {
 		if (bbox.min.x < ebbox.min.x) {
