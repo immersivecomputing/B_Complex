@@ -5,6 +5,8 @@ import { GUI } from './jsm/libs/dat.gui.module.js';
 import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv1Z5ERe/dist=es2020,mode=imports/optimized/d3-dsv.js";
 
 let scene, camera, controls;
+var ebbox = new THREE.Box3();
+
 var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
 	side: THREE.DoubleSide,
@@ -59,10 +61,6 @@ function init(){
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs);
-
-	
-
-	
 
 	loadCSV('/B_Complex/TextFeatures/tanks.csv', 929, 1820);
 }
@@ -131,18 +129,39 @@ function setCameraAndBBox(object) {
 	var middle = new THREE.Vector3();
 	var bbox = new THREE.Box3().setFromObject(object);
 
-	console.log(bbox);
-	var boundingBoxHelper = new THREE.Box3Helper(bbox, 0xffff00);
-	scene.add(boundingBoxHelper);
-
 	middle.x = (bbox.max.x + bbox.min.x) / 2;
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
+	if (ebbox.min == undefined) {
+		ebbox = bbox;
+	} else {
+		if (bbox.min.x < ebbox.min.x) {
+			ebbox.min.x = bbox.min.x;
+		}
+		if (bbox.min.y < ebbox.min.y) {
+			ebbox.min.y = bbox.min.y;
+		}
+		if (bbox.min.z < ebbox.min.z) {
+			ebbox.min.z = bbox.min.z;
+		}
+		if (bbox.max.x > ebbox.max.x) {
+			ebbox.max.x = bbox.max.x;
+		}
+		if (bbox.max.y > ebbox.max.y) {
+			ebbox.max.y = bbox.max.y;
+		}
+		if (bbox.max.z > ebbox.max.z) {
+			ebbox.max.z = bbox.max.z;
+		}
+    }
+
+	var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+	scene.add(boundingBoxHelper);
+
 	camera.position.set(bbox.min.x, bbox.max.y, bbox.min.z);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
-
 }
 
 function getDirectionalLight(intensity) {
