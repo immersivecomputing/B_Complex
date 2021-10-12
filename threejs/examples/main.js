@@ -136,33 +136,6 @@ function setCameraAndBBox(object) {
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
-	if (bbox.min.x < ebbox.min.x) {
-		ebbox.min.x = bbox.min.x;
-		if (scene.getObjectByName('xmin')) {
-			scene.getObjectByName('xmin').position.x = ebbox.min.x;
-		}
-	}
-	if (bbox.min.y < ebbox.min.y) {
-		ebbox.min.y = bbox.min.y;
-		//ymin.position.y = ebbox.min.y;
-	}
-	if (bbox.min.z < ebbox.min.z) {
-		ebbox.min.z = bbox.min.z;
-		//zmax.position.z = ebbox.min.z;
-	}
-	if (bbox.max.x > ebbox.max.x) {
-		ebbox.max.x = bbox.max.x;
-		//xmax.position.x = ebbox.max.x;
-	}
-	if (bbox.max.y > ebbox.max.y) {
-		ebbox.max.y = bbox.max.y;
-		//ymax.position.y = ebbox.max.y;
-	}
-	if (bbox.max.z > ebbox.max.z) {
-		ebbox.max.z = bbox.max.z;
-		//zmin.position.z = ebbox.max.z;
-	}
-
 	if (!scene.getObjectByName('boundingBox')) {
 		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
 		boundingBoxHelper.name = 'boundingBox';
@@ -174,6 +147,25 @@ function setCameraAndBBox(object) {
 		createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, 'ymax', ebbox.max.y);
 		createAxisText(ebbox.min.x, ebbox.min.y, middle.z, 'zmin', -ebbox.max.z);
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, 'zmax', -ebbox.min.z);
+	}
+
+	if (bbox.min.x < ebbox.min.x) {
+		ebbox.min.x = bbox.min.x;
+	}
+	if (bbox.min.y < ebbox.min.y) {
+		ebbox.min.y = bbox.min.y;
+	}
+	if (bbox.min.z < ebbox.min.z) {
+		ebbox.min.z = bbox.min.z;
+	}
+	if (bbox.max.x > ebbox.max.x) {
+		ebbox.max.x = bbox.max.x;
+	}
+	if (bbox.max.y > ebbox.max.y) {
+		ebbox.max.y = bbox.max.y;
+	}
+	if (bbox.max.z > ebbox.max.z) {
+		ebbox.max.z = bbox.max.z;
 	}
 
 	camera.position.set(middle.x, bbox.max.y, bbox.max.z);
@@ -208,6 +200,30 @@ function createAxisText(x,y,z, axisName, label) {
 		scene.add(axis);
 	});
 
+}
+
+function updateAxisText(boundingBox) {
+	if (scene.getObjectByName('xmin')) {
+		var obj = scene.getObjectByName('xmin');
+		obj.position.x = boundingBox.min.x;
+		obj.position.y = boundingBox.min.y;
+		obj.position.z = boundingBox.min.z;
+	}
+	if (scene.getObjectByName('ymin')) {
+		scene.getObjectByName('ymin').position.y = boundingBox.min.y;
+	}
+	if (scene.getObjectByName('zmax')) {
+		scene.getObjectByName('zmax').position.z = boundingBox.min.z;
+	}
+	if (scene.getObjectByName('xmax')) {
+		scene.getObjectByName('xmax').position.x = boundingBox.max.x;
+	}
+	if (scene.getObjectByName('ymax')) {
+		scene.getObjectByName('ymax').position.x = boundingBox.max.y;
+	}
+	if (scene.getObjectByName('zmin')) {
+		scene.getObjectByName('zmin').position.z = boundingBox.max.z;
+	}
 }
 
 function getDirectionalLight(intensity) {
