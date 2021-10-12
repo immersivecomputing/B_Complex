@@ -202,8 +202,14 @@ function createAxisText(x,y,z, axisName, label) {
 
 		if (axisName == 'xmin') {
 			axis.rotation.x = Math.PI/2;
-			axis.rotation.y = Math.PI/2;
-        }
+		}
+		if (axisName == 'ymin') {
+			axis.rotation.y = Math.PI / 2;
+		}
+		if (axisName == 'zmin') {
+			axis.rotation.z = Math.PI / 2;
+		}
+
 
 		axis.position.x = x;
 		axis.position.y = y;
