@@ -124,6 +124,8 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		object.renderOrder = renderOrder;
 
 		objContainer.add(object);
+
+		console.log(ebbox);
 		setCameraAndBBox(objContainer);
 	});
 }
@@ -135,8 +137,6 @@ function setCameraAndBBox(object) {
 	middle.x = (bbox.max.x + bbox.min.x) / 2;
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
-
-	console.log(ebbox);
 
 	if (ebbox.min === undefined) {
 		ebbox = bbox;
