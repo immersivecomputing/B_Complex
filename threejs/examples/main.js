@@ -201,8 +201,8 @@ function createAxisText(x,y,z, axisName, label) {
 		var axis = new THREE.Mesh(textGeo, textMaterial);
 
 		if (axisName == 'xmin') {
-			axis.rotation.x = Math.PI;
-			axis.rotation.y = Math.PI;
+			axis.rotation.x = Math.PI/2;
+			axis.rotation.y = Math.PI/2;
         }
 
 		axis.position.x = x;
