@@ -52,12 +52,12 @@ function init(){
 
 	var loadedOBJs = new THREE.Group();
 	loadedOBJs.name = 'OBJContainer';
-	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5));
-	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4));
-	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3));
-	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2));
-	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1));
-	loadedOBJs.add(loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0));
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs);
 
 	scene.add(loadedOBJs);
 
@@ -103,7 +103,7 @@ function getGeometry(type, size, material, xpos, ypos, zpos) {
 }
 
 
-function loadOBJ(fileName, renderOrder) {
+function loadOBJ(fileName, renderOrder, objContainer) {
 	const loader = new OBJLoader();
 	loader.load(fileName, function (obj) {
 
@@ -121,7 +121,7 @@ function loadOBJ(fileName, renderOrder) {
 		
 		object.renderOrder = renderOrder;
 
-		return object;
+		objContainer.add(object);
 		//scene.add(object);
 
 	});
