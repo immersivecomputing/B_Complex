@@ -290,7 +290,7 @@ function setCameraAndBBox(object) {
 	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
-	clipPlanes[0].position.set(ebbox.min.x, middle.y, middle.z);
+	clipPlanes[0].position.set(573621, middle.y, middle.z);
 }
 
 function createAxisText(x,y,z, axisName, label) {
