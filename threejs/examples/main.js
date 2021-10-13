@@ -17,7 +17,8 @@ var objMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(120,120,120)',
 	side: THREE.DoubleSide,
 	opacity: 0.1,
-	transparent: true
+	transparent: true,
+	clippingPlanes: clipPlanes
 });
 
 var tankMaterial = new THREE.MeshPhongMaterial({
@@ -111,7 +112,15 @@ function init(){
 	controls = new OrbitControls(camera, renderer.domElement);
 
 	update(renderer, scene, camera, controls);
-	
+
+	//clip planes
+	clipPlanes = [
+		new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 573195),
+		new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
+		new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
+	];
+
+
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs);
@@ -122,12 +131,7 @@ function init(){
 	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820, loadedTanks);
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
 
-	//clip planes
-	clipPlanes = [
-		new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 573195),
-		new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
-		new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
-	];
+	//Helpers for clip planes
 	clipPlaneHelpers = clipPlanes.map(p => new THREE.PlaneHelper(p, 2, 0xffffff));
 	clipPlaneHelpers.forEach(ph => {
 		ph.visible = false;
