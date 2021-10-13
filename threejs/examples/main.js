@@ -105,6 +105,7 @@ function init(){
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.localClippingEnabled = true;
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
 	controls = new OrbitControls(camera, renderer.domElement);
@@ -290,7 +291,7 @@ function setCameraAndBBox(object) {
 	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
-	clipPlanes[0].position.set(573621, middle.y, middle.z);
+	clipPlanes[0].position.set(ebbox.min.x, middle.y, middle.z);
 }
 
 function createAxisText(x,y,z, axisName, label) {
