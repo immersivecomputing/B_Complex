@@ -118,9 +118,6 @@ function init(){
 		new THREE.Mesh(clipPlaneGeom[1], clipPlaneMaterial),
 		new THREE.Mesh(clipPlaneGeom[2], clipPlaneMaterial)
 	];
-	console.log(clipPlaneHelpers);
-	console.log(clipPlanes);
-
 	clipPlaneHelpers[0].rotation.y = Math.PI / 2;
 	clipPlaneHelpers[1].rotation.x = Math.PI / 2;
 	scene.add(clipPlaneHelpers[0]);
