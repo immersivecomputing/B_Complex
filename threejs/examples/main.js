@@ -173,7 +173,7 @@ function init(){
 		clipPlanes[1].negate();
 	});
 	folder3.add(clipPlaneHelpers[2], 'visible').name('Z-Display Helper').setValue(false);
-	folder3.add(clipParams.planeZ, 'constant').name('Z-Position').min(137114).max(137725).setValue(137725).onChange(d => {
+	folder3.add(clipParams.planeZ, 'constant').name('Z-Position').min(137114).max(137725).setValue(137114).onChange(d => {
 		clipPlaneHelpers[2].position.z = -d;
 		if (clipParams.planeY.negated) {
 			clipPlanes[2].constant = d;
