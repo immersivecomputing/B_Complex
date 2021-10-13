@@ -8,18 +8,13 @@ import { FontLoader } from './jsm/loaders/FontLoader.js';
 
 let scene, camera, controls;
 var ebbox = new THREE.Box3();
+let objMaterial;
 
 const objParams = {
 	num: 5
 };
 
-var objMaterial = new THREE.MeshPhongMaterial({
-	color: 'rgb(120,120,120)',
-	side: THREE.DoubleSide,
-	opacity: 0.1,
-	transparent: true,
-	clippingPlanes: clipPlanes
-});
+
 
 var tankMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,0,0)'
@@ -119,6 +114,15 @@ function init(){
 		new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
 		new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
 	];
+
+	objMaterial = new THREE.MeshPhongMaterial({
+		color: 'rgb(120,120,120)',
+		side: THREE.DoubleSide,
+		opacity: 0.1,
+		transparent: true,
+		clippingPlanes: clipPlanes,
+		clipShadows: true
+	});
 
 
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
