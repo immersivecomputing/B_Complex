@@ -212,7 +212,7 @@ function setCameraAndBBox(object) {
 
 	if (!scene.getObjectByName('boundingBox')) {
 		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
-		gridHelper = new THREE.GridHelper(10, 10, 0xffffff);
+		gridHelper = new THREE.GridHelper(ebbox.max.x - ebbox.min.x, 10, 0xffffff);
 		boundingBoxHelper.name = 'boundingBox';
 		scene.add(boundingBoxHelper);
 		scene.add(gridHelper);
