@@ -112,26 +112,26 @@ function init(){
 
 	update(renderer, scene, camera, controls);
 
-	var clipPlaneGeom = [
-		new THREE.PlaneGeometry(611, 79.286)
-	];
+	
 
 	//clip planes
+	var clipPlaneGeom = [
+		new THREE.PlaneGeometry(611, 79.286)
+		new THREE.PlaneGeometry(764611)
+	];
 	clipPlanes = [
 		new THREE.Plane(new THREE.Vector3(1, 0, 0), 573195),
 		new THREE.Plane(new THREE.Vector3(0, -1, 0), 206.286)
 	];
-	console.log(clipPlanes);
-
 	clipPlaneHelpers = [
-		new THREE.Mesh(clipPlaneGeom[0], clipPlaneMaterial)
-		//new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
-		//new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
+		new THREE.Mesh(clipPlaneGeom[0], clipPlaneMaterial),
+		new THREE.Mesh(clipPlaneGeom[1], clipPlaneMaterial)
 	];
 
 	clipPlaneHelpers[0].rotation.y = Math.PI / 2;
-
+	clipPlaneHelpers[1].rotation.x = Math.PI / 2;
 	scene.add(clipPlaneHelpers[0]);
+	scene.add(clipPlaneHelpers[1]);
 	
 
 	objMaterial = new THREE.MeshPhongMaterial({
@@ -154,7 +154,7 @@ function init(){
 	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820, loadedTanks);
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
 
-	
+	//Clipping GUI
 	var folder3 = gui.addFolder('Clipping');
 	folder3.add(clipPlaneHelpers[0], 'visible').name('X-Display Helper').setValue(false);
 	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => {
@@ -164,15 +164,21 @@ function init(){
         } else {
 			clipPlanes[0].constant = -d;
         }
-		
 	});
 	folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
 		clipPlanes[0].negate();
 	});
-	//folder3.add(clipPlaneHelpers[1], 'visible').name('Y-Display Helper').setValue(false);
+	folder3.add(clipPlaneHelpers[1], 'visible').name('Y-Display Helper').setValue(false);
 	folder3.add(clipParams.planeY, 'constant').name('Y-Position').min(127).max(206.286).setValue(206.286).onChange(d => {
-		//clipPlaneHelpers[0].position.x = d;
-		clipPlanes[1].constant = d;
+		clipPlaneHelpers[1].position.y = d;
+		if (clipParams.planeY.negated) {
+			clipPlanes[1].constant = -d;
+		} else {
+			clipPlanes[1].constant = d;
+		}
+	});
+	folder3.add(clipParams.planeY, 'negated').name('Y-Negated').onChange(() => {
+		clipPlanes[1].negate();
 	});
 
 	console.log(scene);
