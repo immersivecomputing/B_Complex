@@ -63,7 +63,6 @@ function init(){
 	scene.add(loadedTanks);
 	scene.add(loadedWells);
 
-	console.log(loadedOBJs);
 	var folder2 = gui.addFolder('Surfaces');
 	folder2.add(objParams, 'num', 0, 5).name('Show Surface').onChange(function (value) {
 		loadedOBJs.traverse(function (child) {
@@ -230,6 +229,7 @@ function setCameraAndBBox(object) {
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
 	gridHelper.position.set(middle.x, ebbox.min.y, middle.z);
+	console.log(gridHelper);
 }
 
 function createAxisText(x,y,z, axisName, label) {
