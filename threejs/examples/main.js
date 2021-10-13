@@ -14,8 +14,6 @@ const objParams = {
 	num: 5
 };
 
-
-
 var tankMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,0,0)'
 })
@@ -136,14 +134,18 @@ function init(){
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
 
 	//Helpers for clip planes
-	clipPlaneHelpers = clipPlanes.map(p => new THREE.PlaneHelper(p, 2, 0xffffff));
+	clipPlaneHelpers = clipPlanes.map(p => new THREE.PlaneHelper(p, 50, 0xffffff));
 	clipPlaneHelpers.forEach(ph => {
 		ph.visible = false;
 		scene.add(ph);
 	});
 	// Set up clip plane rendering
 	clipPlaneObjects = [];
-	const planeGeom = new THREE.PlaneGeometry(4, 4);
+	const planeGeom = [
+		new THREE.PlaneGeometry(551, 70),
+		new THREE.PlaneGeometry(4, 4),
+		new THREE.PlaneGeometry(4, 4)
+	];
 
 	var folder3 = gui.addFolder('Clipping');
 	folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
