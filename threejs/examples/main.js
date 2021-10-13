@@ -163,7 +163,6 @@ function init(){
 	});
 	folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
 		clipPlanes[0].negate();
-		clipParams.planeX.constant = clipPlanes[0].constant;
 	});
 	//folder3.add(clipPlaneHelpers[1], 'visible').name('Y-Display Helper').setValue(false);
 	folder3.add(clipParams.planeY, 'constant').name('Y-Position').min(127).max(206.286).setValue(206.286).onChange(d => {
