@@ -28,6 +28,34 @@ var wellMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,255,0)'
 })
 
+let clipPlanes, clipPlaneObjects, clipPlaneHelpers;
+const clipParams = {
+
+	planeX: {
+
+		constant: 0,
+		negated: false,
+		displayHelper: false
+
+	},
+	planeY: {
+
+		constant: 0,
+		negated: false,
+		displayHelper: false
+
+	},
+	planeZ: {
+
+		constant: 0,
+		negated: false,
+		displayHelper: false
+
+	}
+};
+
+
+
 
 function init(){
 	scene = new THREE.Scene();
@@ -93,6 +121,29 @@ function init(){
 
 	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820, loadedTanks);
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
+
+	//clip planes
+	clipPlanes = [
+		new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 0),
+		new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
+		new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
+	];
+	clipPlaneHelpers = clipPlanes.map(p => new THREE.PlaneHelper(p, 2, 0xffffff));
+	clipPlaneHelpers.forEach(ph => {
+		ph.visible = false;
+		scene.add(ph);
+	});
+	// Set up clip plane rendering
+	clipPlaneObjects = [];
+	const planeGeom = new THREE.PlaneGeometry(4, 4);
+
+	var folder3 = gui.addFolder('Clipping');
+	folder3.add(clipParams.planeX, 'displayHelper').onChange(v => clipPlaneHelpers[0].visible = v);
+	folder3.add(clipParams.planeX, 'constant').min(- 1).max(1).onChange(d => clipPlanes[0].constant = d);
+	folder3.add(clipParams.planeX, 'negated').onChange(() => {
+		clipPlanes[0].negate();
+		clipParams.planeX.constant = clipPlanes[0].constant;
+	});
 	
 }
 
