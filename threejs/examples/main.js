@@ -111,7 +111,7 @@ function init(){
 	clipPlanes = [
 		new THREE.Plane(new THREE.Vector3(1, 0, 0), 573195),
 		new THREE.Plane(new THREE.Vector3(0, -1, 0), 206.286),
-		new THREE.Plane(new THREE.Vector3(0, 0, -1), -137725)
+		new THREE.Plane(new THREE.Vector3(0, 0, -1), -137114)
 	];
 	clipPlaneHelpers = [
 		new THREE.Mesh(clipPlaneGeom[0], clipPlaneMaterial),
@@ -173,12 +173,12 @@ function init(){
 		clipPlanes[1].negate();
 	});
 	folder3.add(clipPlaneHelpers[2], 'visible').name('Z-Display Helper').setValue(false);
-	folder3.add(clipParams.planeZ, 'constant').name('Z-Position').min(-137725).max(-137114).setValue(-137725).onChange(d => {
-		clipPlaneHelpers[2].position.z = d;
+	folder3.add(clipParams.planeZ, 'constant').name('Z-Position').min(137114).max(137725).setValue(137725).onChange(d => {
+		clipPlaneHelpers[2].position.z = -d;
 		if (clipParams.planeY.negated) {
-			clipPlanes[2].constant = -d;
-		} else {
 			clipPlanes[2].constant = d;
+		} else {
+			clipPlanes[2].constant = -d;
 		}
 	});
 	folder3.add(clipParams.planeY, 'negated').name('Z-Negated').onChange(() => {
@@ -317,7 +317,7 @@ function setCameraAndBBox(object) {
 	controls.target.set(middle.x, middle.y, middle.z);
 	clipPlaneHelpers[0].position.set(ebbox.min.x, middle.y, middle.z);
 	clipPlaneHelpers[1].position.set(middle.x, ebbox.max.y, middle.z);
-	clipPlaneHelpers[1].position.set(middle.x, middle.y, ebbox.max.z);
+	clipPlaneHelpers[1].position.set(middle.x, middle.y, -ebbox.max.z);
 }
 
 function createAxisText(x,y,z, axisName, label) {
