@@ -27,34 +27,24 @@ const clipPlaneMaterial = new THREE.MeshBasicMaterial({
 	side: THREE.DoubleSide
 });
 
-let clipPlanes, clipPlaneObjects, clipPlaneHelpers;
+let clipPlanes, clipPlaneHelpers;
 const clipParams = {
-
 	planeX: {
-
 		constant: 0,
 		negated: false,
 		displayHelper: false
-
 	},
 	planeY: {
-
 		constant: 0,
 		negated: false,
 		displayHelper: false
-
 	},
 	planeZ: {
-
 		constant: 0,
 		negated: false,
 		displayHelper: false
-
 	}
 };
-
-
-
 
 function init(){
 	scene = new THREE.Scene();
@@ -112,12 +102,10 @@ function init(){
 
 	update(renderer, scene, camera, controls);
 
-	
-
 	//clip planes
 	var clipPlaneGeom = [
 		new THREE.PlaneGeometry(611, 79.286),
-		new THREE.PlaneGeometry(764611)
+		new THREE.PlaneGeometry(764, 611)
 	];
 	clipPlanes = [
 		new THREE.Plane(new THREE.Vector3(1, 0, 0), 573195),
@@ -142,7 +130,6 @@ function init(){
 		clippingPlanes: clipPlanes,
 		clipShadows: true
 	});
-
 
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
 	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs);
