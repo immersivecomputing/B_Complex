@@ -117,14 +117,18 @@ function init(){
 
 	//clip planes
 	clipPlanes = [
+		new THREE.Plane(new THREE.Vector3(1, 0, 0), 573195)
+	];
+
+	clipPlaneHelpers = [
 		new THREE.Mesh(clipPlaneGeom[0], clipPlaneMaterial)
 		//new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
 		//new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
 	];
 
-	clipPlanes[0].rotation.y = Math.PI / 2;
+	clipPlaneHelpers[0].rotation.y = Math.PI / 2;
 
-	scene.add(clipPlanes[0]);
+	scene.add(clipPlaneHelpers[0]);
 	
 
 	objMaterial = new THREE.MeshPhongMaterial({
@@ -151,7 +155,8 @@ function init(){
 	var folder3 = gui.addFolder('Clipping');
 	//folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
 	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => {
-		clipPlanes[0].position.x = d;
+		clipPlaneHelpers[0].position.x = d;
+		clipPlanes[0].constant = d;
 	});
 	//folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
 	//	clipPlanes[0].negate();
@@ -237,6 +242,7 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		objContainer.add(object);
 		setCameraAndBBox(objContainer);
 
+		//as we've added a clipping object
 		renderer.localClippingEnabled = true;
 	});
 }
@@ -292,7 +298,7 @@ function setCameraAndBBox(object) {
 	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
-	clipPlanes[0].position.set(ebbox.min.x, middle.y, middle.z);
+	clipPlaneHelpers[0].position.set(ebbox.min.x, middle.y, middle.z);
 }
 
 function createAxisText(x,y,z, axisName, label) {
