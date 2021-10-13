@@ -22,6 +22,8 @@ var wellMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,255,0)'
 })
 
+const clipPlaneMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide });
+
 let clipPlanes, clipPlaneObjects, clipPlaneHelpers;
 const clipParams = {
 
@@ -106,12 +108,19 @@ function init(){
 
 	update(renderer, scene, camera, controls);
 
+	clipPlaneGeom = [
+		new THREE.PlaneGeometry(550, 611)
+	];
+
 	//clip planes
 	clipPlanes = [
-		new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 573195),
-		new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
-		new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
+		new THREE.Mesh(clipPlaneGeom[0], clipPlaneMaterial)
+		//new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
+		//new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
 	];
+
+	scene.add(clipPlanes[0]);
+	
 
 	objMaterial = new THREE.MeshPhongMaterial({
 		color: 'rgb(120,120,120)',
@@ -133,29 +142,15 @@ function init(){
 	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820, loadedTanks);
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
 
-	//Helpers for clip planes
-	clipPlaneHelpers = clipPlanes.map(p => new THREE.PlaneHelper(p, 50, 0xffffff));
-	clipPlaneHelpers.forEach(ph => {
-		ph.visible = false;
-		scene.add(ph);
-	});
-	// Set up clip plane rendering
-	clipPlaneObjects = [];
-	const planeGeom = [
-		new THREE.PlaneGeometry(551, 70),
-		new THREE.PlaneGeometry(4, 4),
-		new THREE.PlaneGeometry(4, 4)
-	];
+	
+	//var folder3 = gui.addFolder('Clipping');
+	//folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
+	//folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => clipPlanes[0].constant = d);
+	//folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
+	//	clipPlanes[0].negate();
+	//	clipParams.planeX.constant = clipPlanes[0].constant;
+	//});
 
-	var folder3 = gui.addFolder('Clipping');
-	folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
-	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => clipPlanes[0].constant = d);
-	folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
-		clipPlanes[0].negate();
-		clipParams.planeX.constant = clipPlanes[0].constant;
-	});
-
-	console.log(scene);
 }
 
 function loadCSV2D(fileName, rowMin, rowMax, threeGroup) {
@@ -287,7 +282,7 @@ function setCameraAndBBox(object) {
 	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
-	
+	clipPlanes[0].position.set(ebbox.min.x, middle.y, middle.z);
 }
 
 function createAxisText(x,y,z, axisName, label) {
