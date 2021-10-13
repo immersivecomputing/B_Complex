@@ -105,22 +105,27 @@ function init(){
 	//clip planes
 	var clipPlaneGeom = [
 		new THREE.PlaneGeometry(611, 79.286),
-		new THREE.PlaneGeometry(764, 611)
+		new THREE.PlaneGeometry(764, 611),
+		new THREE.PlaneGeometry(764, 79.286)
 	];
 	clipPlanes = [
 		new THREE.Plane(new THREE.Vector3(1, 0, 0), 573195),
-		new THREE.Plane(new THREE.Vector3(0, -1, 0), 206.286)
+		new THREE.Plane(new THREE.Vector3(0, -1, 0), 206.286),
+		new THREE.Plane(new THREE.Vector3(0, -1, 0), -137725)
 	];
 	clipPlaneHelpers = [
 		new THREE.Mesh(clipPlaneGeom[0], clipPlaneMaterial),
-		new THREE.Mesh(clipPlaneGeom[1], clipPlaneMaterial)
+		new THREE.Mesh(clipPlaneGeom[1], clipPlaneMaterial),
+		new THREE.Mesh(clipPlaneGeom[2], clipPlaneMaterial)
 	];
+	console.log(clipPlaneHelpers);
+	console.log(clipPlanes);
 
 	clipPlaneHelpers[0].rotation.y = Math.PI / 2;
 	clipPlaneHelpers[1].rotation.x = Math.PI / 2;
 	scene.add(clipPlaneHelpers[0]);
 	scene.add(clipPlaneHelpers[1]);
-	
+	scene.add(clipPlaneHelpers[2]);
 
 	objMaterial = new THREE.MeshPhongMaterial({
 		color: 'rgb(120,120,120)',
@@ -166,6 +171,18 @@ function init(){
 	});
 	folder3.add(clipParams.planeY, 'negated').name('Y-Negated').onChange(() => {
 		clipPlanes[1].negate();
+	});
+	folder3.add(clipPlaneHelpers[2], 'visible').name('Z-Display Helper').setValue(false);
+	folder3.add(clipParams.planeZ, 'constant').name('Y-Position').min(-137725).max(-137114).setValue(-137725).onChange(d => {
+		clipPlaneHelpers[2].position.z = d;
+		if (clipParams.planeY.negated) {
+			clipPlanes[2].constant = -d;
+		} else {
+			clipPlanes[2].constant = d;
+		}
+	});
+	folder3.add(clipParams.planeY, 'negated').name('Y-Negated').onChange(() => {
+		clipPlanes[2].negate();
 	});
 
 	console.log(scene);
@@ -257,8 +274,6 @@ function setCameraAndBBox(object) {
 	middle.y = (bbox.max.y + bbox.min.y) / 2;
 	middle.z = (bbox.max.z + bbox.min.z) / 2;
 
-	
-
 	if (bbox.min.x < ebbox.min.x) {
 		ebbox.min.x = bbox.min.x;
 		updateAxisText(ebbox);
@@ -302,6 +317,7 @@ function setCameraAndBBox(object) {
 	controls.target.set(middle.x, middle.y, middle.z);
 	clipPlaneHelpers[0].position.set(ebbox.min.x, middle.y, middle.z);
 	clipPlaneHelpers[1].position.set(middle.x, ebbox.max.y, middle.z);
+	clipPlaneHelpers[1].position.set(middle.x, middle.y, ebbox.max.z);
 }
 
 function createAxisText(x,y,z, axisName, label) {
