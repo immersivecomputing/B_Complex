@@ -150,7 +150,7 @@ function init(){
 	
 	var folder3 = gui.addFolder('Clipping');
 	//folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
-	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => {
+	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573621).onChange(d => {
 		clipPlanes[0].position.x = d;
 	});
 	//folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
