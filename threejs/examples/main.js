@@ -152,7 +152,6 @@ function init(){
 	//folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
 	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => {
 		clipPlanes[0].position.x = d;
-		update(renderer, scene, camera, controls);
 	});
 	//folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
 	//	clipPlanes[0].negate();
