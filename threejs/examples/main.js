@@ -221,6 +221,7 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		object.traverse(function (child) {
 			if (child.isMesh) {
 				child.material = objMaterial;
+				console.log(child.material);
 				child.castShadow = false;
 				child.geometry.computeVertexNormals(true);
 			}
