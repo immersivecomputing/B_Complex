@@ -159,7 +159,12 @@ function init(){
 	folder3.add(clipPlaneHelpers[0], 'visible').name('X-Display Helper').setValue(false);
 	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => {
 		clipPlaneHelpers[0].position.x = d;
-		clipPlanes[0].constant = -d;
+		if (clipParams.planeX.negated) {
+			clipPlanes[0].constant = d;
+        } else {
+			clipPlanes[0].constant = -d;
+        }
+		
 	});
 	folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
 		clipPlanes[0].negate();
