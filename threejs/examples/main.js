@@ -145,9 +145,9 @@ function init(){
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
 
 	
-	//var folder3 = gui.addFolder('Clipping');
+	var folder3 = gui.addFolder('Clipping');
 	//folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
-	//folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => clipPlanes[0].constant = d);
+	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => clipPlanes[0].position.x = d);
 	//folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
 	//	clipPlanes[0].negate();
 	//	clipParams.planeX.constant = clipPlanes[0].constant;
