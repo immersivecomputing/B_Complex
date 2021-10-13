@@ -116,7 +116,7 @@ function init(){
 
 	//clip planes
 	var clipPlaneGeom = [
-		new THREE.PlaneGeometry(611, 79.286)
+		new THREE.PlaneGeometry(611, 79.286),
 		new THREE.PlaneGeometry(764611)
 	];
 	clipPlanes = [
