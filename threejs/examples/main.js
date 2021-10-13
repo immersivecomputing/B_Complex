@@ -144,7 +144,8 @@ function init(){
 		clipPlanes[0].negate();
 		clipParams.planeX.constant = clipPlanes[0].constant;
 	});
-	
+
+	console.log(scene);
 }
 
 function loadCSV2D(fileName, rowMin, rowMax, threeGroup) {
