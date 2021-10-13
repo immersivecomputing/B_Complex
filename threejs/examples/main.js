@@ -22,7 +22,7 @@ var wellMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,255,0)'
 })
 
-const clipPlaneMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide });
+const clipPlaneMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(100,100,100)', side: THREE.DoubleSide });
 
 let clipPlanes, clipPlaneObjects, clipPlaneHelpers;
 const clipParams = {
@@ -119,6 +119,8 @@ function init(){
 		//new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
 	];
 
+	clipPlanes[0].rotation.y = Math.PI / 2;
+
 	scene.add(clipPlanes[0]);
 	
 
@@ -151,6 +153,7 @@ function init(){
 	//	clipParams.planeX.constant = clipPlanes[0].constant;
 	//});
 
+	console.log(scene);
 }
 
 function loadCSV2D(fileName, rowMin, rowMax, threeGroup) {
