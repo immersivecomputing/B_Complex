@@ -119,7 +119,7 @@ function init(){
 	//clip planes
 	clipPlanes = [
 		new THREE.Plane(new THREE.Vector3(1, 0, 0), 573195),
-		new THREE.Plane(new THREE.Vector3(0, -1, 0), 203)
+		new THREE.Plane(new THREE.Vector3(0, -1, 0), 206.286)
 	];
 	console.log(clipPlanes);
 
@@ -165,7 +165,7 @@ function init(){
 	//	clipPlanes[0].negate();
 	//	clipParams.planeX.constant = clipPlanes[0].constant;
 	//});
-	folder3.add(clipParams.planeY, 'constant').name('Y-Position').min(127).max(203).setValue(203).onChange(d => {
+	folder3.add(clipParams.planeY, 'constant').name('Y-Position').min(127).max(206.286).setValue(206.286).onChange(d => {
 		//clipPlaneHelpers[0].position.x = d;
 		clipPlanes[1].constant = d;
 	});
