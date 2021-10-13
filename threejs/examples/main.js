@@ -124,7 +124,7 @@ function init(){
 
 	//clip planes
 	clipPlanes = [
-		new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 0),
+		new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 573195),
 		new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
 		new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
 	];
@@ -139,7 +139,7 @@ function init(){
 
 	var folder3 = gui.addFolder('Clipping');
 	folder3.add(clipParams.planeX, 'displayHelper').name('X-Display Helper').onChange(v => clipPlaneHelpers[0].visible = v);
-	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573550).max(573874).setValue(573550).onChange(d => clipPlanes[0].constant = d);
+	folder3.add(clipParams.planeX, 'constant').name('X-Position').min(573195).max(573959).setValue(573195).onChange(d => clipPlanes[0].constant = d);
 	folder3.add(clipParams.planeX, 'negated').name('X-Negated').onChange(() => {
 		clipPlanes[0].negate();
 		clipParams.planeX.constant = clipPlanes[0].constant;
