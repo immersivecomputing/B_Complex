@@ -120,6 +120,7 @@ function init(){
 	clipPlanes = [
 		new THREE.Plane(new THREE.Vector3(1, 0, 0), 573195)
 	];
+	console.log(clipPlanes);
 
 	clipPlaneHelpers = [
 		new THREE.Mesh(clipPlaneGeom[0], clipPlaneMaterial)
