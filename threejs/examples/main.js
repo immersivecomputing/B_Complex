@@ -8,7 +8,7 @@ import { FontLoader } from './jsm/loaders/FontLoader.js';
 
 let scene, camera, controls;
 var ebbox = new THREE.Box3();
-let xmin, xmax, ymin, ymax, zmin, zmax;
+let gridHelper;
 
 const objParams = {
 	num: 5
@@ -213,8 +213,10 @@ function setCameraAndBBox(object) {
 
 	if (!scene.getObjectByName('boundingBox')) {
 		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+		gridHelper = new THREE.GridHelper(10, 10, 0xffffff);
 		boundingBoxHelper.name = 'boundingBox';
 		scene.add(boundingBoxHelper);
+		scene.add(gridHelper);
 
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
 		createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
@@ -227,6 +229,7 @@ function setCameraAndBBox(object) {
 	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
+	gridHelper.position.set(middle.x, ebbox.min.y, middle.z);
 }
 
 function createAxisText(x,y,z, axisName, label) {
