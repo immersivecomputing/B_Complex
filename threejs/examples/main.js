@@ -6,7 +6,7 @@ import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv
 import { FontLoader } from './jsm/loaders/FontLoader.js';
 
 
-let scene, camera, controls;
+let scene, camera, controls, renderer;
 var ebbox = new THREE.Box3();
 let objMaterial;
 
@@ -103,9 +103,8 @@ function init(){
 	folder3.add(loadedTanks, 'visible').name('Tanks').setValue(false);
 	folder3.add(loadedWells, 'visible').name('Wells').setValue(false);
 
-	var renderer = new THREE.WebGLRenderer();
+	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	renderer.localClippingEnabled = true;
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
 	controls = new OrbitControls(camera, renderer.domElement);
@@ -237,6 +236,8 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 
 		objContainer.add(object);
 		setCameraAndBBox(objContainer);
+
+		renderer.localClippingEnabled = true;
 	});
 }
 
