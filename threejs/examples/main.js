@@ -22,7 +22,9 @@ var wellMaterial = new THREE.MeshPhongMaterial({
 	color: 'rgb(255,255,0)'
 })
 
-const clipPlaneMaterial = new THREE.MeshBasicMaterial({ color: 'rgb(100,100,100)', side: THREE.DoubleSide });
+const clipPlaneMaterial = new THREE.MeshBasicMaterial({
+	color: 'rgb(100,100,100)'
+});
 
 let clipPlanes, clipPlaneObjects, clipPlaneHelpers;
 const clipParams = {
@@ -221,7 +223,6 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		object.traverse(function (child) {
 			if (child.isMesh) {
 				child.material = objMaterial;
-				console.log(child.material);
 				child.castShadow = false;
 				child.geometry.computeVertexNormals(true);
 			}
