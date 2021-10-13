@@ -212,9 +212,9 @@ function setCameraAndBBox(object) {
 
 	if (!scene.getObjectByName('boundingBox')) {
 		var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
-		gridHelper = new THREE.GridHelper(ebbox.max.x - ebbox.min.x, 10, 0xffffff);
 		boundingBoxHelper.name = 'boundingBox';
 		scene.add(boundingBoxHelper);
+		gridHelper = new THREE.GridHelper(ebbox.max.x - ebbox.min.x, 10, 0xffffff);
 		scene.add(gridHelper);
 
 		createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
@@ -229,10 +229,12 @@ function setCameraAndBBox(object) {
 	camera.lookAt(middle.x, middle.y, middle.z);
 	controls.target.set(middle.x, middle.y, middle.z);
 	gridHelper.position.set(middle.x, ebbox.min.y, middle.z);
-	console.log(gridHelper);
+	console.log(scene);
 }
 
 function createAxisText(x,y,z, axisName, label) {
+
+	gridHelper = new THREE.GridHelper(ebbox.max.x - ebbox.min.x, 10, 0xffffff);
 
 	const loader = new FontLoader();
 	loader.load('fonts/helvetiker_regular.typeface.json', function (response) {
