@@ -105,6 +105,7 @@ function init(){
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.localClippingEnabled = true;
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
 	controls = new OrbitControls(camera, renderer.domElement);
@@ -241,9 +242,6 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 
 		objContainer.add(object);
 		setCameraAndBBox(objContainer);
-
-		//as we've added a clipping object
-		renderer.localClippingEnabled = true;
 	});
 }
 
