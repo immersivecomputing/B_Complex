@@ -109,7 +109,7 @@ function init(){
 	update(renderer, scene, camera, controls);
 
 	var clipPlaneGeom = [
-		new THREE.PlaneGeometry(550, 611)
+		new THREE.PlaneGeometry(611, 79.286)
 	];
 
 	//clip planes
