@@ -211,7 +211,7 @@ function setupClipPlane(geometry) {
 				stencilZPass: THREE.ReplaceStencilOp,
 
 			});
-		const po = new THREE.Mesh(planeGeom, planeMat);
+		const po = new THREE.Mesh(clipPlaneGeom[i], planeMat);
 		po.onAfterRender = function (renderer) {
 
 			renderer.clearStencil();
