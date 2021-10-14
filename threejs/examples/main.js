@@ -521,8 +521,8 @@ function update(renderer, scene, camera, controls) {
 
 		po.lookAt(
 			po.position.x - plane.normal.x,
-			po.position.y + plane.normal.y,
-			po.position.z - plane.normal.z,
+			po.position.y - plane.normal.y,
+			po.position.z + plane.normal.z,
 		);
 
 	}
