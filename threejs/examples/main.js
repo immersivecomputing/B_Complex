@@ -122,9 +122,6 @@ function init(){
 	];
 	clipPlaneHelpers[0].rotation.y = Math.PI / 2;
 	clipPlaneHelpers[1].rotation.x = Math.PI / 2;
-	//scene.add(clipPlaneHelpers[0]);
-	//scene.add(clipPlaneHelpers[1]);
-	//scene.add(clipPlaneHelpers[2]);
 
 	update(renderer, scene, camera, controls);
 
@@ -337,9 +334,9 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 				child.castShadow = false;
 				child.geometry.computeVertexNormals(true);
 
-				if (renderOrder == 0) {
-					setupClipPlane(child.geometry);
-				}
+				//if (renderOrder == 0) {
+				//	setupClipPlane(child.geometry);
+				//}
 
 			}
 		});
