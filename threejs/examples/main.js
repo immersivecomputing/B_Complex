@@ -194,7 +194,7 @@ function setupClipPlane(geometry) {
 
 		const poGroup = new THREE.Group();
 		const plane = clipPlanes[i];
-		const stencilGroup = createPlaneStencilGroup(geometry, plane, i + 2);
+		const stencilGroup = createPlaneStencilGroup(geometry, plane, i + 1);
 
 		// plane is clipped by the other clipping planes
 		const planeMat =
@@ -407,8 +407,6 @@ function setCameraAndBBox(object) {
 	clipPlaneHelpers[0].position.set(ebbox.min.x, middle.y, middle.z);
 	clipPlaneHelpers[1].position.set(middle.x, ebbox.max.y, middle.z);
 	clipPlaneHelpers[2].position.set(middle.x, middle.y, ebbox.max.z);
-
-	console.log(middle);
 }
 
 function createAxisText(x,y,z, axisName, label) {
