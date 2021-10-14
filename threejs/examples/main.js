@@ -201,7 +201,7 @@ function setupClipPlane(geometry) {
 				color: 0xE91E63,
 				metalness: 0.1,
 				roughness: 0.75,
-				clippingPlanes: planes.filter(p => p !== plane),
+				clippingPlanes: clipPlanes.filter(p => p !== plane),
 
 				stencilWrite: true,
 				stencilRef: 0,
