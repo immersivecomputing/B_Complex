@@ -194,7 +194,7 @@ function setupClipPlane(geometry) {
 
 		const poGroup = new THREE.Group();
 		const plane = clipPlanes[i];
-		const stencilGroup = createPlaneStencilGroup(geometry, plane, i + 10);
+		const stencilGroup = createPlaneStencilGroup(geometry, plane, i + 2);
 
 		// plane is clipped by the other clipping planes
 		const planeMat =
