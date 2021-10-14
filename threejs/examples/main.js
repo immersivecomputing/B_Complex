@@ -100,8 +100,6 @@ function init(){
 
 	controls = new OrbitControls(camera, renderer.domElement);
 
-	update(renderer, scene, camera, controls);
-
 	//clip planes
 	clipPlaneObjects = [];
 	clipObject = new THREE.Group();
@@ -125,6 +123,8 @@ function init(){
 	scene.add(clipPlaneHelpers[0]);
 	scene.add(clipPlaneHelpers[1]);
 	scene.add(clipPlaneHelpers[2]);
+
+	update(renderer, scene, camera, controls);
 
 	objMaterial = new THREE.MeshPhongMaterial({
 		color: 'rgb(120,120,120)',
