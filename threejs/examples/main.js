@@ -514,7 +514,9 @@ function update(renderer, scene, camera, controls) {
 		const plane = clipPlanes[i];
 		const planeHelper = clipPlaneHelpers[i];
 		const po = clipPlaneObjects[i];
-		planeHelper.coplanarPoint(po.position);
+		//plane.coplanarPoint(po.position);
+		po.position.set(planeHelper.position.x, planeHelper.position.y, planeHelper.position.z);
+
 		po.lookAt(
 			po.position.x - plane.normal.x,
 			po.position.y - plane.normal.y,
