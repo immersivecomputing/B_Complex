@@ -27,7 +27,7 @@ const clipPlaneMaterial = new THREE.MeshBasicMaterial({
 	side: THREE.DoubleSide
 });
 
-let clipPlanes, clipPlaneHelpers;
+let clipPlanes, clipPlaneObjects, clipPlaneHelpers, clipObject;
 const clipParams = {
 	planeX: {
 		constant: 0,
@@ -103,6 +103,8 @@ function init(){
 	update(renderer, scene, camera, controls);
 
 	//clip planes
+	clipPlaneObjects = [];
+	clipObject = = new THREE.Group();
 	var clipPlaneGeom = [
 		new THREE.PlaneGeometry(611, 79.286),
 		new THREE.PlaneGeometry(764, 611),
@@ -183,6 +185,47 @@ function init(){
 	});
 
 	console.log(scene);
+}
+
+function setupClipPlane(geometry) {
+	for (let i = 0; i < 3; i++) {
+
+		const poGroup = new THREE.Group();
+		const plane = clipPlanes[i];
+		const stencilGroup = createPlaneStencilGroup(geometry, plane, i + 1);
+
+		// plane is clipped by the other clipping planes
+		const planeMat =
+			new THREE.MeshStandardMaterial({
+
+				color: 0xE91E63,
+				metalness: 0.1,
+				roughness: 0.75,
+				clippingPlanes: planes.filter(p => p !== plane),
+
+				stencilWrite: true,
+				stencilRef: 0,
+				stencilFunc: THREE.NotEqualStencilFunc,
+				stencilFail: THREE.ReplaceStencilOp,
+				stencilZFail: THREE.ReplaceStencilOp,
+				stencilZPass: THREE.ReplaceStencilOp,
+
+			});
+		const po = new THREE.Mesh(planeGeom, planeMat);
+		po.onAfterRender = function (renderer) {
+
+			renderer.clearStencil();
+
+		};
+
+		po.renderOrder = i + 1.1;
+
+		clipObject.add(stencilGroup);
+		poGroup.add(po);
+		clipPlaneObjects.push(po);
+		scene.add(poGroup);
+
+	}
 }
 
 function createPlaneStencilGroup(geometry, plane, renderOrder) {
@@ -291,6 +334,11 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 				child.material = objMaterial;
 				child.castShadow = false;
 				child.geometry.computeVertexNormals(true);
+
+				if (renderOrder == 0) {
+					setupClipPlane(child.geometry);
+				}
+
 			}
 		});
 
@@ -299,6 +347,8 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 
 		objContainer.add(object);
 		setCameraAndBBox(objContainer);
+
+		
 
 	});
 }
