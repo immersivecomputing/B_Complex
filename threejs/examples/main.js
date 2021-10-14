@@ -122,9 +122,9 @@ function init(){
 	];
 	clipPlaneHelpers[0].rotation.y = Math.PI / 2;
 	clipPlaneHelpers[1].rotation.x = Math.PI / 2;
-	scene.add(clipPlaneHelpers[0]);
-	scene.add(clipPlaneHelpers[1]);
-	scene.add(clipPlaneHelpers[2]);
+	//scene.add(clipPlaneHelpers[0]);
+	//scene.add(clipPlaneHelpers[1]);
+	//scene.add(clipPlaneHelpers[2]);
 
 	update(renderer, scene, camera, controls);
 
@@ -522,7 +522,7 @@ function update(renderer, scene, camera, controls) {
 		po.lookAt(
 			po.position.x - plane.normal.x,
 			po.position.y - plane.normal.y,
-			po.position.z + plane.normal.z,
+			po.position.z - plane.normal.z,
 		);
 
 	}
