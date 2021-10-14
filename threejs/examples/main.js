@@ -520,8 +520,8 @@ function update(renderer, scene, camera, controls) {
 		po.position.set(planeHelper.position.x, planeHelper.position.y, planeHelper.position.z);
 
 		po.lookAt(
-			po.position.x + plane.normal.x,
-			po.position.y - plane.normal.y,
+			po.position.x - plane.normal.x,
+			po.position.y + plane.normal.y,
 			po.position.z - plane.normal.z,
 		);
 
