@@ -509,6 +509,21 @@ function getAmbientLight(intensity) {
 
 
 function update(renderer, scene, camera, controls) {
+	for (let i = 0; i < clipPlaneObjects.length; i++) {
+
+		const plane = clipPlanes[i];
+		const po = planeObjects[i];
+		plane.coplanarPoint(po.position);
+		po.lookAt(
+			po.position.x - plane.normal.x,
+			po.position.y - plane.normal.y,
+			po.position.z - plane.normal.z,
+		);
+
+	}
+
+
+
 	renderer.render(
 		scene,
 		camera
