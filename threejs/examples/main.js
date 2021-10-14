@@ -27,7 +27,7 @@ const clipPlaneMaterial = new THREE.MeshBasicMaterial({
 	side: THREE.DoubleSide
 });
 
-let clipPlanes, clipPlaneObjects, clipPlaneHelpers, clipObject;
+let clipPlanes, clipPlaneObjects, clipPlaneHelpers, clipObject, clipPlaneGeom;
 const clipParams = {
 	planeX: {
 		constant: 0,
@@ -105,7 +105,7 @@ function init(){
 	//clip planes
 	clipPlaneObjects = [];
 	clipObject = new THREE.Group();
-	var clipPlaneGeom = [
+	clipPlaneGeom = [
 		new THREE.PlaneGeometry(611, 79.286),
 		new THREE.PlaneGeometry(764, 611),
 		new THREE.PlaneGeometry(764, 79.286)
