@@ -406,6 +406,8 @@ function setCameraAndBBox(object) {
 	clipPlaneHelpers[0].position.set(ebbox.min.x, middle.y, middle.z);
 	clipPlaneHelpers[1].position.set(middle.x, ebbox.max.y, middle.z);
 	clipPlaneHelpers[2].position.set(middle.x, middle.y, ebbox.max.z);
+
+	console.log(middle);
 }
 
 function createAxisText(x,y,z, axisName, label) {
