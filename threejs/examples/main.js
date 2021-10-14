@@ -103,6 +103,7 @@ function init(){
 	//clip planes
 	clipPlaneObjects = [];
 	clipObject = new THREE.Group();
+	clipObject.rotation.x = -Math.PI / 2;
 	scene.add(clipObject);
 	clipPlaneGeom = [
 		new THREE.PlaneGeometry(611, 79.286),
