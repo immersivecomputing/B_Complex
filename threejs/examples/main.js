@@ -245,7 +245,7 @@ function init(){
 	folder4.add(objParams, 'white').name('White').setValue(false).onChange(function (value){
 		for (let i = 0; i < 6; i++){
 			if (value){
-				loadedOBJs[i].traverse(function (child){
+				loadedOBJs.traverse(function (child){
 					if (child.isMesh){
 						child.material = objMaterial;
 					}
