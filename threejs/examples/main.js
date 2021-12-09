@@ -251,43 +251,44 @@ function init(){
 					}
 				});	
 			}else{ 
-				if (loadedOBJs[i].name == '0'){
-					loadedOBJs[i].traverse(function (child){
-						if (child.isMesh){
-							child.material = objMaterial0;
-						}
-					});
-				}else if (loadedOBJs[i].name == '1'){
-					loadedOBJs[i].traverse(function (child){
-						if (child.isMesh){
-							child.material = objMaterial1;
-						}
-					});
-				}else if (loadedOBJs[i].name == '2'){
-					loadedOBJs[i].traverse(function (child){
-						if (child.isMesh){
-							child.material = objMaterial2;
-						}
-					});
-				}else if (loadedOBJs[i].name == '3'){
-					loadedOBJs[i].traverse(function (child){
-						if (child.isMesh){
-							child.material = objMaterial3;
-						}
-					});
-				}else if (loadedOBJs[i].name == '4'){
-					loadedOBJs[i].traverse(function (child){
-						if (child.isMesh){
-							child.material = objMaterial4;
-						}
-					});
-				}else if (loadedOBJs[i].name == '5'){
-					loadedOBJs[i].traverse(function (child){
-						if (child.isMesh){
-							child.material = objMaterial5;
-						}
-					});
-				}
+				console.log(loadedOBJs[i]);
+				// if (loadedOBJs[i].name == '0'){
+				// 	loadedOBJs[i].traverse(function (child){
+				// 		if (child.isMesh){
+				// 			child.material = objMaterial0;
+				// 		}
+				// 	});
+				// }else if (loadedOBJs[i].name == '1'){
+				// 	loadedOBJs[i].traverse(function (child){
+				// 		if (child.isMesh){
+				// 			child.material = objMaterial1;
+				// 		}
+				// 	});
+				// }else if (loadedOBJs[i].name == '2'){
+				// 	loadedOBJs[i].traverse(function (child){
+				// 		if (child.isMesh){
+				// 			child.material = objMaterial2;
+				// 		}
+				// 	});
+				// }else if (loadedOBJs[i].name == '3'){
+				// 	loadedOBJs[i].traverse(function (child){
+				// 		if (child.isMesh){
+				// 			child.material = objMaterial3;
+				// 		}
+				// 	});
+				// }else if (loadedOBJs[i].name == '4'){
+				// 	loadedOBJs[i].traverse(function (child){
+				// 		if (child.isMesh){
+				// 			child.material = objMaterial4;
+				// 		}
+				// 	});
+				// }else if (loadedOBJs[i].name == '5'){
+				// 	loadedOBJs[i].traverse(function (child){
+				// 		if (child.isMesh){
+				// 			child.material = objMaterial5;
+				// 		}
+				// 	});
+				// }
 			}
 		}
 	});
