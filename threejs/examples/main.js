@@ -243,53 +243,52 @@ function init(){
 
 	var folder4 = gui.addFolder('Color');
 	folder4.add(objParams, 'white').name('White').setValue(false).onChange(function (value){
-		for (let i = 0; i < 6; i++){
-			if (value){
-				loadedOBJs.traverse(function (child){
-					if (child.isMesh){
-						child.material = objMaterial;
-					}
-				});	
-			}else{ 
-				console.log(loadedOBJs[i]);
-				// if (loadedOBJs[i].name == '0'){
-				// 	loadedOBJs[i].traverse(function (child){
-				// 		if (child.isMesh){
-				// 			child.material = objMaterial0;
-				// 		}
-				// 	});
-				// }else if (loadedOBJs[i].name == '1'){
-				// 	loadedOBJs[i].traverse(function (child){
-				// 		if (child.isMesh){
-				// 			child.material = objMaterial1;
-				// 		}
-				// 	});
-				// }else if (loadedOBJs[i].name == '2'){
-				// 	loadedOBJs[i].traverse(function (child){
-				// 		if (child.isMesh){
-				// 			child.material = objMaterial2;
-				// 		}
-				// 	});
-				// }else if (loadedOBJs[i].name == '3'){
-				// 	loadedOBJs[i].traverse(function (child){
-				// 		if (child.isMesh){
-				// 			child.material = objMaterial3;
-				// 		}
-				// 	});
-				// }else if (loadedOBJs[i].name == '4'){
-				// 	loadedOBJs[i].traverse(function (child){
-				// 		if (child.isMesh){
-				// 			child.material = objMaterial4;
-				// 		}
-				// 	});
-				// }else if (loadedOBJs[i].name == '5'){
-				// 	loadedOBJs[i].traverse(function (child){
-				// 		if (child.isMesh){
-				// 			child.material = objMaterial5;
-				// 		}
-				// 	});
-				// }
-			}
+		if (value){
+			loadedOBJs.traverse(function (child){
+				if (child.isMesh){
+					child.material = objMaterial;
+				}
+			});	
+		}else{ 
+			loadedOBJs.traverse(function (child){
+				if (child.name == '0'){
+					child.traverse( function (newChild){
+						if (newChild.isMesh){
+							newChild.material = objMaterial0;
+						}
+					});
+				}else if (child.name == '1'){
+					child.traverse( function (newChild){
+						if (newChild.isMesh){
+							newChild.material = objMaterial1;
+						}
+					});
+				}else if (child.name == '2'){
+					child.traverse( function (newChild){
+						if (newChild.isMesh){
+							newChild.material = objMaterial2;
+						}
+					});
+				}else if (child.name == '3'){
+					child.traverse( function (newChild){
+						if (newChild.isMesh){
+							newChild.material = objMaterial3;
+						}
+					});
+				}else if (child.name == '4'){
+					child.traverse( function (newChild){
+						if (newChild.isMesh){
+							newChild.material = objMaterial4;
+						}
+					});
+				}else if (child.name == '5'){
+					child.traverse( function (newChild){
+						if (newChild.isMesh){
+							newChild.material = objMaterial5;
+						}
+					});
+				}
+			});
 		}
 	});
 	folder4.add(objParams, 'opacity', 0, 1).name('Opacity').onChange(function (value) {
