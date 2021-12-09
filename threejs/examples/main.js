@@ -254,37 +254,37 @@ function init(){
 				if (child.name == '0'){
 					child.traverse( function (newChild){
 						if (newChild.isMesh){
-							newChild.material = objMaterial0;
+							newChild.material = objMaterial5;
 						}
 					});
 				}else if (child.name == '1'){
 					child.traverse( function (newChild){
 						if (newChild.isMesh){
-							newChild.material = objMaterial1;
+							newChild.material = objMaterial4;
 						}
 					});
 				}else if (child.name == '2'){
 					child.traverse( function (newChild){
 						if (newChild.isMesh){
-							newChild.material = objMaterial2;
+							newChild.material = objMaterial3;
 						}
 					});
 				}else if (child.name == '3'){
 					child.traverse( function (newChild){
 						if (newChild.isMesh){
-							newChild.material = objMaterial3;
+							newChild.material = objMaterial2;
 						}
 					});
 				}else if (child.name == '4'){
 					child.traverse( function (newChild){
 						if (newChild.isMesh){
-							newChild.material = objMaterial4;
+							newChild.material = objMaterial1;
 						}
 					});
 				}else if (child.name == '5'){
 					child.traverse( function (newChild){
 						if (newChild.isMesh){
-							newChild.material = objMaterial5;
+							newChild.material = objMaterial0;
 						}
 					});
 				}
