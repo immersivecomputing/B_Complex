@@ -11,7 +11,8 @@ var ebbox = new THREE.Box3();
 let objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
 
 const objParams = {
-	num: 5
+	num: 5,
+	opacity: 0.1
 };
 
 var tankMaterial = new THREE.MeshPhongMaterial({
@@ -238,6 +239,18 @@ function init(){
 		clipPlanes[2].negate();
 	});
 
+
+	var folder4 = gui.addFolder('Color');
+	folder4.add(objParams, 'opacity', 0, 1).name('Opacity').onChange(function (value) {
+		loadedOBJs.traverse(function (child) {
+			if (child.isMesh) {
+				child.material.opacity = value;
+			}
+		});
+	});
+
+
+
 	console.log(scene);
 }
 
@@ -281,6 +294,7 @@ function setupClipPlane(geometry) {
 
 	}
 }
+
 
 function createPlaneStencilGroup(geometry, plane, renderOrder) {
 
@@ -387,6 +401,7 @@ function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
 			if (child.isMesh) {
 				child.material = colorrgb;
 				child.castShadow = false;
+				child.receiveShadow = false;
 				child.geometry.computeVertexNormals(true);
 
 				//if (renderOrder == 0) {
