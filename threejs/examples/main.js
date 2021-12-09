@@ -242,7 +242,7 @@ function init(){
 
 
 	var folder4 = gui.addFolder('Color');
-	folder3.add(objParams, 'white').name('White').setValue(false).onChane(function (value){
+	folder3.add(objParams, 'white').name('White').setValue(false).onChange(function (value){
 		for (let i = 0; i < 6; i++){
 			if (value){
 				objContainer[i].material = objMaterial;	
