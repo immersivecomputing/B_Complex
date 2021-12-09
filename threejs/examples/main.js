@@ -8,7 +8,7 @@ import { FontLoader } from './jsm/loaders/FontLoader.js';
 
 let scene, camera, controls, renderer;
 var ebbox = new THREE.Box3();
-let objMaterial;
+let objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
 
 const objParams = {
 	num: 5
@@ -134,13 +134,67 @@ function init(){
 		clipShadows: true
 	});
 
+	objMaterial0 = new THREE.MeshPhongMaterial({
+		color: 'rgb(68, 1, 84)',
+		side: THREE.DoubleSide,
+		opacity: 0.1,
+		transparent: true,
+		clippingPlanes: clipPlanes,
+		clipShadows: true
+	});
 
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs, 'rgb(68, 1, 84)');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs, 'rgb(65, 68, 135)');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs, 'rgb(42, 120, 142)');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs, 'rgb(34, 168, 132)');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs, 'rgb(122, 209, 81)');
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs, 'rgb(253, 231, 37)');
+	objMaterial1 = new THREE.MeshPhongMaterial({
+		color: 'rgb(65, 68, 135)',
+		side: THREE.DoubleSide,
+		opacity: 0.1,
+		transparent: true,
+		clippingPlanes: clipPlanes,
+		clipShadows: true
+	});
+
+	objMaterial2 = new THREE.MeshPhongMaterial({
+		color: 'rgb(42, 120, 142)',
+		side: THREE.DoubleSide,
+		opacity: 0.1,
+		transparent: true,
+		clippingPlanes: clipPlanes,
+		clipShadows: true
+	});
+
+	objMaterial3 = new THREE.MeshPhongMaterial({
+		color: 'rgb(34, 168, 132)',
+		side: THREE.DoubleSide,
+		opacity: 0.1,
+		transparent: true,
+		clippingPlanes: clipPlanes,
+		clipShadows: true
+	});
+
+	objMaterial4 = new THREE.MeshPhongMaterial({
+		color: 'rgb(122, 209, 81)',
+		side: THREE.DoubleSide,
+		opacity: 0.1,
+		transparent: true,
+		clippingPlanes: clipPlanes,
+		clipShadows: true
+	});
+
+	objMaterial5 = new THREE.MeshPhongMaterial({
+		color: 'rgb(253, 231, 37)',
+		side: THREE.DoubleSide,
+		opacity: 0.1,
+		transparent: true,
+		clippingPlanes: clipPlanes,
+		clipShadows: true
+	});
+
+
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs, objMaterial0);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs, objMaterial1);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs, objMaterial2);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs, objMaterial3);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs, objMaterial4);
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs, objMaterial5);
 
 	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820, loadedTanks);
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
@@ -331,8 +385,7 @@ function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
 
 		object.traverse(function (child) {
 			if (child.isMesh) {
-				child.material = objMaterial;
-				child.material.color = colorrgb;
+				child.material = colorrgb;
 				child.castShadow = false;
 				child.geometry.computeVertexNormals(true);
 
