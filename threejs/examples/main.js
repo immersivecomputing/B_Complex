@@ -12,7 +12,8 @@ let objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMate
 
 const objParams = {
 	num: 5,
-	opacity: 0.1
+	opacity: 0.1,
+	white: false
 };
 
 var tankMaterial = new THREE.MeshPhongMaterial({
@@ -241,6 +242,27 @@ function init(){
 
 
 	var folder4 = gui.addFolder('Color');
+	folder3.add(objParams, 'white').name('White').setValue(false).onChane(function (value){
+		for (let i = 0; i < 6; i++){
+			if (value){
+				objContainer[i].material = objMaterial;	
+			}else{ 
+				if (objContainer[i].name == '0'){
+					objContainer[i].material = objMaterial0;	
+				}else if (objContainer[i].name == '1'){
+					objContainer[i].material = objMaterial1;	
+				}else if (objContainer[i].name == '2'){
+					objContainer[i].material = objMaterial2;	
+				}else if (objContainer[i].name == '3'){
+					objContainer[i].material = objMaterial3;	
+				}else if (objContainer[i].name == '4'){
+					objContainer[i].material = objMaterial4;	
+				}else if (objContainer[i].name == '5'){
+					objContainer[i].material = objMaterial5;	
+				}
+			}
+		}
+	});
 	folder4.add(objParams, 'opacity', 0, 1).name('Opacity').onChange(function (value) {
 		loadedOBJs.traverse(function (child) {
 			if (child.isMesh) {
@@ -388,6 +410,7 @@ function getGeometry(type, size, material, xpos, ypos, zpos, threeGroup) {
 
 	threeGroup.add(obj);
 }
+
 
 
 function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
