@@ -134,12 +134,13 @@ function init(){
 		clipShadows: true
 	});
 
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs);
-	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs);
+
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs, 'rgb(68, 1, 84)');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs, 'rgb(65, 68, 135)');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs, 'rgb(42, 120, 142)');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs, 'rgb(34, 168, 132)');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs, 'rgb(122, 209, 81)');
+	loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs, 'rgb(253, 231, 37)');
 
 	loadCSV2D('/B_Complex/TextFeatures/tanks.csv', 929, 1820, loadedTanks);
 	loadCSV3D('/B_Complex/TextFeatures/B_Complex_wells_201201.csv', loadedWells);
@@ -321,7 +322,7 @@ function getGeometry(type, size, material, xpos, ypos, zpos, threeGroup) {
 }
 
 
-function loadOBJ(fileName, renderOrder, objContainer) {
+function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
 	const loader = new OBJLoader();
 	loader.load(fileName, function (obj) {
 
@@ -331,6 +332,7 @@ function loadOBJ(fileName, renderOrder, objContainer) {
 		object.traverse(function (child) {
 			if (child.isMesh) {
 				child.material = objMaterial;
+				child.material.color = colorrgb;
 				child.castShadow = false;
 				child.geometry.computeVertexNormals(true);
 
