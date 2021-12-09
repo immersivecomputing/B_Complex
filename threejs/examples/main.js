@@ -245,20 +245,48 @@ function init(){
 	folder4.add(objParams, 'white').name('White').setValue(false).onChange(function (value){
 		for (let i = 0; i < 6; i++){
 			if (value){
-				loadedOBJs[i].material = objMaterial;	
+				loadedOBJs[i].traverse(function (child){
+					if (child.isMesh){
+						child.material = objMaterial;
+					}
+				});	
 			}else{ 
 				if (loadedOBJs[i].name == '0'){
-					loadedOBJs[i].material = objMaterial0;	
+					loadedOBJs[i].traverse(function (child){
+						if (child.isMesh){
+							child.material = objMaterial0;
+						}
+					});
 				}else if (loadedOBJs[i].name == '1'){
-					loadedOBJs[i].material = objMaterial1;	
+					loadedOBJs[i].traverse(function (child){
+						if (child.isMesh){
+							child.material = objMaterial1;
+						}
+					});
 				}else if (loadedOBJs[i].name == '2'){
-					loadedOBJs[i].material = objMaterial2;	
+					loadedOBJs[i].traverse(function (child){
+						if (child.isMesh){
+							child.material = objMaterial2;
+						}
+					});
 				}else if (loadedOBJs[i].name == '3'){
-					loadedOBJs[i].material = objMaterial3;	
+					loadedOBJs[i].traverse(function (child){
+						if (child.isMesh){
+							child.material = objMaterial3;
+						}
+					});
 				}else if (loadedOBJs[i].name == '4'){
-					loadedOBJs[i].material = objMaterial4;	
+					loadedOBJs[i].traverse(function (child){
+						if (child.isMesh){
+							child.material = objMaterial4;
+						}
+					});
 				}else if (loadedOBJs[i].name == '5'){
-					loadedOBJs[i].material = objMaterial5;	
+					loadedOBJs[i].traverse(function (child){
+						if (child.isMesh){
+							child.material = objMaterial5;
+						}
+					});
 				}
 			}
 		}
