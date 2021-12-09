@@ -242,23 +242,23 @@ function init(){
 
 
 	var folder4 = gui.addFolder('Color');
-	folder3.add(objParams, 'white').name('White').setValue(false).onChange(function (value){
+	folder4.add(objParams, 'white').name('White').setValue(false).onChange(function (value){
 		for (let i = 0; i < 6; i++){
 			if (value){
-				objContainer[i].material = objMaterial;	
+				loadedOBJs[i].material = objMaterial;	
 			}else{ 
-				if (objContainer[i].name == '0'){
-					objContainer[i].material = objMaterial0;	
-				}else if (objContainer[i].name == '1'){
-					objContainer[i].material = objMaterial1;	
-				}else if (objContainer[i].name == '2'){
-					objContainer[i].material = objMaterial2;	
-				}else if (objContainer[i].name == '3'){
-					objContainer[i].material = objMaterial3;	
-				}else if (objContainer[i].name == '4'){
-					objContainer[i].material = objMaterial4;	
-				}else if (objContainer[i].name == '5'){
-					objContainer[i].material = objMaterial5;	
+				if (loadedOBJs[i].name == '0'){
+					loadedOBJs[i].material = objMaterial0;	
+				}else if (loadedOBJs[i].name == '1'){
+					loadedOBJs[i].material = objMaterial1;	
+				}else if (loadedOBJs[i].name == '2'){
+					loadedOBJs[i].material = objMaterial2;	
+				}else if (loadedOBJs[i].name == '3'){
+					loadedOBJs[i].material = objMaterial3;	
+				}else if (loadedOBJs[i].name == '4'){
+					loadedOBJs[i].material = objMaterial4;	
+				}else if (loadedOBJs[i].name == '5'){
+					loadedOBJs[i].material = objMaterial5;	
 				}
 			}
 		}
