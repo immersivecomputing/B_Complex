@@ -243,19 +243,19 @@
 
                 if (!loadedOBJs.getObjectByName('boundingBox')) {
                     var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
-                    boundingBoxHelper.name = 'boundingBox';
+                    //boundingBoxHelper.name = 'boundingBox';
 
 
 
-                    // const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-                    // const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-                    // const cube = new THREE.Mesh( geometry, material );
-                    // cube.position.set(0,0.5,-1);
-                    // cube.name = 'boundingBox';
-                    // loadedOBJs.add( cube );
+                    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+                    const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+                    const cube = new THREE.Mesh( boundingBoxHelper.geometry, material );
+                    cube.position.set(0,0.5,-1);
+                    cube.name = 'boundingBox';
+                    loadedOBJs.add( cube );
 
 
-                    loadedOBJs.add(boundingBoxHelper);
+                    //loadedOBJs.add(boundingBoxHelper);
                     
                     // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
                     // createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
