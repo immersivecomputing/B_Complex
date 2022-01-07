@@ -253,8 +253,8 @@
                 }
 
                 if (!loadedOBJs.getObjectByName('boundingBox')) {
-                    var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
-                    loadedOBJs.add(boundingBoxHelper);
+                    //var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+                    //loadedOBJs.add(boundingBoxHelper);
 
 
                     const geometry = new THREE.BoxGeometry( 1,1,1 );
@@ -262,13 +262,20 @@
                     const cube = new THREE.Mesh(geometry, material );
                     cube.position.set(0,0.5,-1);
 
-                    console.log(boundingBoxHelper.scale)
+                    //console.log(boundingBoxHelper.scale)
                     //cube.scale.set(boundingBoxHelper.scale.x, boundingBoxHelper.scale.y, boundingBoxHelper.scale.z);
-                    cube.scale.set(0.382000000000005, 0.03964299774169927, 0.305499999999995);
+                    cube.scale.set(2*0.382000000000005, 2*0.03964299774169927, 2*0.305499999999995);
                     cube.name = 'boundingBox';
                     loadedOBJs.add( cube );
 
+                    cube.attach(loadedOBJs.getObjectByName('0'));
+                    cube.attach(loadedOBJs.getObjectByName('1'));
+                    cube.attach(loadedOBJs.getObjectByName('2'));
+                    cube.attach(loadedOBJs.getObjectByName('3'));
+                    cube.attach(loadedOBJs.getObjectByName('4'));
+                    cube.attach(loadedOBJs.getObjectByName('5'));
 
+                    
                     
                     // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
                     // createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
