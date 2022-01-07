@@ -444,7 +444,7 @@ function getGeometry(type, size, material, xpos, ypos, zpos, threeGroup) {
 	threeGroup.add(obj);
 }
 
-const loadedMeshes = 0;
+var loadedMeshes = 0;
 
 function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
 	const loader = new OBJLoader();
