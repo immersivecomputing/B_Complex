@@ -4,6 +4,8 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GUI } from './jsm/libs/dat.gui.module.js';
 import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv1Z5ERe/dist=es2020,mode=imports/optimized/d3-dsv.js";
 import { FontLoader } from './jsm/loaders/FontLoader.js';
+import { VRButton } from './jsm/webxr/VRButton';
+import { XRControllerModelFactory } from './jsm/webxr/XRControllerModelFactory.js';
 
 
 let scene, camera, controls, renderer;
@@ -98,7 +100,32 @@ function init(){
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.localClippingEnabled = true;
+	renderer.xr.enabled = true;
 	document.getElementById('webgl').appendChild(renderer.domElement);
+
+	document.body.appendChild( VRButton.createButton( renderer ) );
+
+
+	//XR Section
+	// const controller1 = renderer.xr.getController( 0 );
+	// controller1.add( new THREE.Line( geometry ) );
+	// scene.add( controller1 );
+
+	// const controller2 = renderer.xr.getController( 1 );
+	// controller2.add( new THREE.Line( geometry ) );
+	// scene.add( controller2 );
+
+	const controllerModelFactory = new XRControllerModelFactory();
+
+	const controllerGrip1 = renderer.xr.getControllerGrip( 0 );
+	controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
+	scene.add( controllerGrip1 );
+
+	const controllerGrip2 = renderer.xr.getControllerGrip( 1 );
+	controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
+	scene.add( controllerGrip2 );
+	//
+
 
 	controls = new OrbitControls(camera, renderer.domElement);
 
