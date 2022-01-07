@@ -287,7 +287,7 @@
 					const intersection = intersections[ 0 ];
 
 					const object = intersection.object;
-					object.material.emissive.b = 1;
+					//object.material.emissive.b = 1;
 					controller.attach( object );
 
 					controller.userData.selected = object;
@@ -303,7 +303,7 @@
 				if ( controller.userData.selected !== undefined ) {
 
 					const object = controller.userData.selected;
-					object.material.emissive.b = 0;
+					//object.material.emissive.b = 0;
 					loadedOBJs.attach( object );
 
 					controller.userData.selected = undefined;
