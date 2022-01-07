@@ -241,7 +241,7 @@
                 }
 
                 if (!scene.getObjectByName('boundingBox')) {
-                    var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+                    var boundingBoxHelper = new THREE.BoxGeometry(ebbox, 0xffffff);
                     boundingBoxHelper.name = 'boundingBox';
                     loadedOBJs.add(boundingBoxHelper);
                     
