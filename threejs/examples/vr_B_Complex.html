@@ -32,6 +32,7 @@
 
 			let controls, loadedOBJs;
             let objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
+            var ebbox = new THREE.Box3();
 
 			init();
 			animate();
@@ -197,9 +198,60 @@
 
                     object.renderOrder = renderOrder;
                     object.name = renderOrder.toString();
+                    object.castShadow = true;
+					object.receiveShadow = true;
 
                     objContainer.add(object);
+
+                    setCameraAndBBox(objContainer);
                 });
+            }
+
+            function setCameraAndBBox(object) {
+                var middle = new THREE.Vector3();
+                var bbox = new THREE.Box3().setFromObject(object);
+
+                middle.x = (bbox.max.x + bbox.min.x) / 2;
+                middle.y = (bbox.max.y + bbox.min.y) / 2;
+                middle.z = (bbox.max.z + bbox.min.z) / 2;
+
+                if (bbox.min.x < ebbox.min.x) {
+                    ebbox.min.x = bbox.min.x;
+                    updateAxisText(ebbox);
+                }
+                if (bbox.min.y < ebbox.min.y) {
+                    ebbox.min.y = bbox.min.y;
+                    updateAxisText(ebbox);
+                }
+                if (bbox.min.z < ebbox.min.z) {
+                    ebbox.min.z = bbox.min.z;
+                    updateAxisText(ebbox);
+                }
+                if (bbox.max.x > ebbox.max.x) {
+                    ebbox.max.x = bbox.max.x;
+                    updateAxisText(ebbox);
+                }
+                if (bbox.max.y > ebbox.max.y) {
+                    ebbox.max.y = bbox.max.y;
+                    updateAxisText(ebbox);
+                }
+                if (bbox.max.z > ebbox.max.z) {
+                    ebbox.max.z = bbox.max.z;
+                    updateAxisText(ebbox);
+                }
+
+                if (!scene.getObjectByName('boundingBox')) {
+                    var boundingBoxHelper = new THREE.Box3Helper(ebbox, 0xffffff);
+                    boundingBoxHelper.name = 'boundingBox';
+                    loadedOBJs.add(boundingBoxHelper);
+                    
+                    // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
+                    // createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
+                    // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'ymin', ebbox.min.y);
+                    // createAxisText(ebbox.min.x, ebbox.max.y, ebbox.max.z, 'ymax', ebbox.max.y);
+                    // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'zmin', -ebbox.max.z);
+                    // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.min.z, 'zmax', -ebbox.min.z);
+                }
             }
 
 
