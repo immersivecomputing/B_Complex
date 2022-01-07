@@ -121,11 +121,11 @@
                     transparent: true
                 });
 
-				loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 0, loadedOBJs, objMaterial0);
-                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 0, loadedOBJs, objMaterial1);
-                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 0, loadedOBJs, objMaterial2);
-                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 0, loadedOBJs, objMaterial3);
-                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 0, loadedOBJs, objMaterial4);
+				loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs, objMaterial0);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs, objMaterial1);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs, objMaterial2);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs, objMaterial3);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs, objMaterial4);
                 loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs, objMaterial5);
 				//
 
@@ -258,7 +258,7 @@
 
 
                     const geometry = new THREE.BoxGeometry( 1,1,1 );
-                    const material = new THREE.MeshStandardMaterial( {color: 0x00ff00, transparent: true, opacity: 0} );
+                    const material = new THREE.MeshStandardMaterial( {color: 0x00ff00, transparent: true, opacity: 0, side: THREE.BackSide} );
                     const cube = new THREE.Mesh(geometry, material );
                     cube.position.set(0,0.5,-1);
 
@@ -273,7 +273,7 @@
                     cube.attach(loadedOBJs.getObjectByName('4'));
                     cube.attach(loadedOBJs.getObjectByName('5'));
 
-                    cube.renderOrder = 0;
+                    cube.renderOrder = loadedMeshes + 1;
                     
                     // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
                     // createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
