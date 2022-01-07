@@ -11,6 +11,8 @@ import { XRControllerModelFactory } from './jsm/webxr/XRControllerModelFactory.j
 let scene, camera, controls, renderer;
 var ebbox = new THREE.Box3();
 let objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
+const cameraGroup = new THREE.Group();
+
 
 const objParams = {
 	num: 5,
@@ -107,13 +109,25 @@ function init(){
 
 
 	//XR Section
-	// const controller1 = renderer.xr.getController( 0 );
-	// controller1.add( new THREE.Line( geometry ) );
-	// scene.add( controller1 );
+	//When user turn on the VR mode.
+	renderer.xr.addEventListener('sessionstart', function () {
+		scene.add(cameraGroup);
+		cameraGroup.add(camera);
+	});
+	//When user turn off the VR mode.
+	renderer.xr.addEventListener('sessionend', function () {
+		scene.remove(cameraGroup);
+		cameraGroup.remove(camera);
+	});
 
-	// const controller2 = renderer.xr.getController( 1 );
-	// controller2.add( new THREE.Line( geometry ) );
-	// scene.add( controller2 );
+
+	const controller1 = renderer.xr.getController( 0 );
+	controller1.add( new THREE.Line( geometry ) );
+	scene.add( controller1 );
+
+	const controller2 = renderer.xr.getController( 1 );
+	controller2.add( new THREE.Line( geometry ) );
+	scene.add( controller2 );
 
 	const controllerModelFactory = new XRControllerModelFactory();
 
@@ -548,6 +562,10 @@ function setCameraAndBBox(object) {
 
 	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
+
+	cameraGroup.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
+	cameraGroup.lookAt(middle.x, middle.y, middle.z);
+
 	controls.target.set(middle.x, middle.y, middle.z);
 	clipPlaneHelpers[0].position.set(ebbox.min.x, middle.y, middle.z);
 	clipPlaneHelpers[1].position.set(middle.x, ebbox.max.y, middle.z);
