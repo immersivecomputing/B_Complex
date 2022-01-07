@@ -104,8 +104,6 @@ function init(){
 	renderer.localClippingEnabled = true;
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
-	document.body.appendChild( VRButton.createButton( renderer ) );
-
 
 	controls = new OrbitControls(camera, renderer.domElement);
 
