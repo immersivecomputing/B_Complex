@@ -444,7 +444,7 @@ function getGeometry(type, size, material, xpos, ypos, zpos, threeGroup) {
 	threeGroup.add(obj);
 }
 
-
+const loadedMeshes = 0;
 
 function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
 	const loader = new OBJLoader();
@@ -471,8 +471,12 @@ function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
 		object.name = renderOrder.toString();
 
 		objContainer.add(object);
-		setCameraAndBBox(objContainer);
 
+		loadedMeshes += 1;
+
+		if (loadedMeshes == 6){
+			setCameraAndBBox(objContainer);
+		}
 		
 
 	});

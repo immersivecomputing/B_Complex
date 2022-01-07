@@ -179,6 +179,8 @@
                 console.log(scene);
 			}
 
+            const loadedMeshes = 0;
+
             function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
                 const loader = new OBJLoader();
                 loader.load(fileName, function (obj) {
@@ -203,10 +205,17 @@
 					object.receiveShadow = true;
 
                     objContainer.add(object);
+                    
+                    loadedMeshes += 1;
 
-                    setCameraAndBBox(objContainer);
+                    if (loadedMeshes == 6){
+                        setCameraAndBBox(objContainer);
+                    }
+                    
                 });
             }
+
+            
 
             function setCameraAndBBox(object) {
                 var middle = new THREE.Vector3();
@@ -247,9 +256,9 @@
 
 
 
-                    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+                    //const geometry = new THREE.BoxGeometry( 1, 1, 1 );
                     const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-                    const cube = new THREE.Mesh( geometry, material );
+                    const cube = new THREE.Mesh( boundingBoxHelper.geometry, material );
                     cube.position.set(0,0.5,-1);
                     cube.scale.set(boundingBoxHelper.scale.x, boundingBoxHelper.scale.y, boundingBoxHelper.scale.z)
                     cube.name = 'boundingBox';
