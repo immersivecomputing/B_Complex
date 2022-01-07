@@ -527,6 +527,8 @@ function setCameraAndBBox(object) {
 	camera.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	camera.lookAt(middle.x, middle.y, middle.z);
 
+	console.log(camera.position);
+
 	cameraGroup.position.set(middle.x, bbox.max.y + 200, bbox.max.z + 500);
 	cameraGroup.lookAt(middle.x, middle.y, middle.z);
 
