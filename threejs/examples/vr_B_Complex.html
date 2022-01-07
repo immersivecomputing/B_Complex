@@ -29,7 +29,8 @@
 			const intersected = [];
 			const tempMatrix = new THREE.Matrix4();
 
-			let controls, group;
+			let controls, loadedOBJs;
+            let objMaterial0;
 
 			init();
 			animate();
@@ -72,44 +73,19 @@
 				light.shadow.mapSize.set( 4096, 4096 );
 				scene.add( light );
 
-				group = new THREE.Group();
-				scene.add( group );
+				loadedOBJs = new THREE.Group();
+				scene.add( loadedOBJs );
 
-				// const geometries = [
-				// 	new THREE.BoxGeometry( 0.2, 0.2, 0.2 ),
-				// 	new THREE.ConeGeometry( 0.2, 0.2, 64 ),
-				// 	new THREE.CylinderGeometry( 0.2, 0.2, 0.2, 64 ),
-				// 	new THREE.IcosahedronGeometry( 0.2, 8 ),
-				// 	new THREE.TorusGeometry( 0.2, 0.04, 64, 32 )
-				// ];
+                objMaterial0 = new THREE.MeshPhongMaterial({
+                    color: 'rgb(68, 1, 84)',
+                    side: THREE.DoubleSide,
+                    opacity: 0.1,
+                    transparent: true,
+                    clippingPlanes: clipPlanes,
+                    clipShadows: true
+                });
 
-				// for ( let i = 0; i < 50; i ++ ) {
-
-				// 	const geometry = geometries[ Math.floor( Math.random() * geometries.length ) ];
-				// 	const material = new THREE.MeshStandardMaterial( {
-				// 		color: Math.random() * 0xffffff,
-				// 		roughness: 0.7,
-				// 		metalness: 0.0
-				// 	} );
-
-				// 	const object = new THREE.Mesh( geometry, material );
-
-				// 	object.position.x = Math.random() * 4 - 2;
-				// 	object.position.y = Math.random() * 2;
-				// 	object.position.z = Math.random() * 4 - 2;
-
-				// 	object.rotation.x = Math.random() * 2 * Math.PI;
-				// 	object.rotation.y = Math.random() * 2 * Math.PI;
-				// 	object.rotation.z = Math.random() * 2 * Math.PI;
-
-				// 	object.scale.setScalar( Math.random() + 0.5 );
-
-				// 	object.castShadow = true;
-				// 	object.receiveShadow = true;
-
-				// 	group.add( object );
-
-				// }
+				loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs, objMaterial0);
 
 				//
 
@@ -164,6 +140,30 @@
 
 			}
 
+            function loadOBJ(fileName, renderOrder, objContainer, colorrgb) {
+                const loader = new OBJLoader();
+                loader.load(fileName, function (obj) {
+
+                    var object = obj;
+                    object.rotation.x = -Math.PI / 2;
+
+                    object.traverse(function (child) {
+                        if (child.isMesh) {
+                            child.material = colorrgb;
+                            child.castShadow = false;
+                            child.receiveShadow = false;
+                            child.geometry.computeVertexNormals(true);
+                        }
+                    });
+
+                    object.renderOrder = renderOrder;
+                    object.name = renderOrder.toString();
+
+                    objContainer.add(object);
+                });
+            }
+
+
 			function onWindowResize() {
 
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -201,7 +201,7 @@
 
 					const object = controller.userData.selected;
 					object.material.emissive.b = 0;
-					group.attach( object );
+					loadedOBJs.attach( object );
 
 					controller.userData.selected = undefined;
 
@@ -217,7 +217,7 @@
 				raycaster.ray.origin.setFromMatrixPosition( controller.matrixWorld );
 				raycaster.ray.direction.set( 0, 0, - 1 ).applyMatrix4( tempMatrix );
 
-				return raycaster.intersectObjects( group.children, false );
+				return raycaster.intersectObjects( loadedOBJs.children, false );
 
 			}
 
