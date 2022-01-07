@@ -54,6 +54,7 @@ const clipParams = {
 
 function init(){
 	scene = new THREE.Scene();
+	scene.background = new THREE.Color( 0x444444 );
 	var gui = new GUI();
 
 	camera = new THREE.PerspectiveCamera(
@@ -119,7 +120,7 @@ function init(){
 		scene.remove(cameraGroup);
 		cameraGroup.remove(camera);
 	});
-	
+
 	const geometry = new THREE.BufferGeometry();
 	geometry.setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 5 ) ] );
 
