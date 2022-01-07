@@ -31,7 +31,7 @@
 			const tempMatrix = new THREE.Matrix4();
 
 			let controls, loadedOBJs;
-            let objMaterial0;
+            let objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
 
 			init();
 			animate();
@@ -87,45 +87,35 @@
                     color: 'rgb(65, 68, 135)',
                     side: THREE.DoubleSide,
                     opacity: 0.1,
-                    transparent: true,
-                    clippingPlanes: clipPlanes,
-                    clipShadows: true
+                    transparent: true
                 });
 
                 objMaterial2 = new THREE.MeshPhongMaterial({
                     color: 'rgb(42, 120, 142)',
                     side: THREE.DoubleSide,
                     opacity: 0.1,
-                    transparent: true,
-                    clippingPlanes: clipPlanes,
-                    clipShadows: true
+                    transparent: true
                 });
 
                 objMaterial3 = new THREE.MeshPhongMaterial({
                     color: 'rgb(34, 168, 132)',
                     side: THREE.DoubleSide,
                     opacity: 0.1,
-                    transparent: true,
-                    clippingPlanes: clipPlanes,
-                    clipShadows: true
+                    transparent: true
                 });
 
                 objMaterial4 = new THREE.MeshPhongMaterial({
                     color: 'rgb(122, 209, 81)',
                     side: THREE.DoubleSide,
                     opacity: 0.1,
-                    transparent: true,
-                    clippingPlanes: clipPlanes,
-                    clipShadows: true
+                    transparent: true
                 });
 
                 objMaterial5 = new THREE.MeshPhongMaterial({
                     color: 'rgb(253, 231, 37)',
                     side: THREE.DoubleSide,
                     opacity: 0.1,
-                    transparent: true,
-                    clippingPlanes: clipPlanes,
-                    clipShadows: true
+                    transparent: true
                 });
 
 				loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs, objMaterial0);
