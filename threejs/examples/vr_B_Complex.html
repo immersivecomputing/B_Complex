@@ -54,7 +54,7 @@
 
 				const floorGeometry = new THREE.PlaneGeometry( 4, 4 );
 				const floorMaterial = new THREE.MeshStandardMaterial( {
-					color: 0x808080,
+					color: 0x505050,
 					roughness: 1.0,
 					metalness: 0.0
 				} );
@@ -217,27 +217,27 @@
 
                 if (bbox.min.x < ebbox.min.x) {
                     ebbox.min.x = bbox.min.x;
-                    updateAxisText(ebbox);
+                    //updateAxisText(ebbox);
                 }
                 if (bbox.min.y < ebbox.min.y) {
                     ebbox.min.y = bbox.min.y;
-                    updateAxisText(ebbox);
+                    //updateAxisText(ebbox);
                 }
                 if (bbox.min.z < ebbox.min.z) {
                     ebbox.min.z = bbox.min.z;
-                    updateAxisText(ebbox);
+                    //updateAxisText(ebbox);
                 }
                 if (bbox.max.x > ebbox.max.x) {
                     ebbox.max.x = bbox.max.x;
-                    updateAxisText(ebbox);
+                    //updateAxisText(ebbox);
                 }
                 if (bbox.max.y > ebbox.max.y) {
                     ebbox.max.y = bbox.max.y;
-                    updateAxisText(ebbox);
+                    //updateAxisText(ebbox);
                 }
                 if (bbox.max.z > ebbox.max.z) {
                     ebbox.max.z = bbox.max.z;
-                    updateAxisText(ebbox);
+                    //updateAxisText(ebbox);
                 }
 
                 if (!scene.getObjectByName('boundingBox')) {
