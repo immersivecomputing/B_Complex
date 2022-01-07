@@ -83,41 +83,41 @@
                 objMaterial0 = new THREE.MeshPhongMaterial({
                     color: 'rgb(68, 1, 84)',
                     side: THREE.DoubleSide,
-                    opacity: 0.1,
+                    opacity: 0.2,
                     transparent: true
                 });
                 objMaterial1 = new THREE.MeshPhongMaterial({
                     color: 'rgb(65, 68, 135)',
                     side: THREE.DoubleSide,
-                    opacity: 0.1,
+                    opacity: 0.2,
                     transparent: true
                 });
 
                 objMaterial2 = new THREE.MeshPhongMaterial({
                     color: 'rgb(42, 120, 142)',
                     side: THREE.DoubleSide,
-                    opacity: 0.1,
+                    opacity: 0.2,
                     transparent: true
                 });
 
                 objMaterial3 = new THREE.MeshPhongMaterial({
                     color: 'rgb(34, 168, 132)',
                     side: THREE.DoubleSide,
-                    opacity: 0.1,
+                    opacity: 0.2,
                     transparent: true
                 });
 
                 objMaterial4 = new THREE.MeshPhongMaterial({
                     color: 'rgb(122, 209, 81)',
                     side: THREE.DoubleSide,
-                    opacity: 0.1,
+                    opacity: 0.2,
                     transparent: true
                 });
 
                 objMaterial5 = new THREE.MeshPhongMaterial({
                     color: 'rgb(253, 231, 37)',
                     side: THREE.DoubleSide,
-                    opacity: 0.1,
+                    opacity: 0.2,
                     transparent: true
                 });
 
@@ -272,6 +272,8 @@
                     cube.attach(loadedOBJs.getObjectByName('3'));
                     cube.attach(loadedOBJs.getObjectByName('4'));
                     cube.attach(loadedOBJs.getObjectByName('5'));
+
+                    cube.renderOrder = loadedMeshes + 1;
                     
                     // createAxisText(ebbox.min.x, ebbox.min.y, ebbox.max.z, 'xmin', ebbox.min.x);
                     // createAxisText(ebbox.max.x, ebbox.min.y, ebbox.max.z, 'xmax', ebbox.max.x);
