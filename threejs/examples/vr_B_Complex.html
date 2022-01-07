@@ -9,7 +9,7 @@
 	<body>
 
 		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> vr - dragging
+			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> vr - B Complex
 		</div>
 
 		<script type="module">
@@ -44,7 +44,7 @@
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0x808080 );
 
-				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 );
 				camera.position.set( 0, 1.6, 3 );
 
 				controls = new OrbitControls( camera, container );
@@ -144,6 +144,7 @@
                 loader.load(fileName, function (obj) {
 
                     var object = obj;
+                    object.position.set(5735.77, -1.666653, -1374.195)
                     object.rotation.x = -Math.PI / 2;
 
                     object.traverse(function (child) {
