@@ -42,7 +42,7 @@
 				document.body.appendChild( container );
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0x808080 );
+				scene.background = new THREE.Color( 0x000000 );
 
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 );
 				camera.position.set( 0, 1.6, 3 );
@@ -53,7 +53,7 @@
 
 				const floorGeometry = new THREE.PlaneGeometry( 4, 4 );
 				const floorMaterial = new THREE.MeshStandardMaterial( {
-					color: 0xeeeeee,
+					color: 0x808080,
 					roughness: 1.0,
 					metalness: 0.0
 				} );
@@ -83,9 +83,57 @@
                     opacity: 0.1,
                     transparent: true
                 });
+                objMaterial1 = new THREE.MeshPhongMaterial({
+                    color: 'rgb(65, 68, 135)',
+                    side: THREE.DoubleSide,
+                    opacity: 0.1,
+                    transparent: true,
+                    clippingPlanes: clipPlanes,
+                    clipShadows: true
+                });
+
+                objMaterial2 = new THREE.MeshPhongMaterial({
+                    color: 'rgb(42, 120, 142)',
+                    side: THREE.DoubleSide,
+                    opacity: 0.1,
+                    transparent: true,
+                    clippingPlanes: clipPlanes,
+                    clipShadows: true
+                });
+
+                objMaterial3 = new THREE.MeshPhongMaterial({
+                    color: 'rgb(34, 168, 132)',
+                    side: THREE.DoubleSide,
+                    opacity: 0.1,
+                    transparent: true,
+                    clippingPlanes: clipPlanes,
+                    clipShadows: true
+                });
+
+                objMaterial4 = new THREE.MeshPhongMaterial({
+                    color: 'rgb(122, 209, 81)',
+                    side: THREE.DoubleSide,
+                    opacity: 0.1,
+                    transparent: true,
+                    clippingPlanes: clipPlanes,
+                    clipShadows: true
+                });
+
+                objMaterial5 = new THREE.MeshPhongMaterial({
+                    color: 'rgb(253, 231, 37)',
+                    side: THREE.DoubleSide,
+                    opacity: 0.1,
+                    transparent: true,
+                    clippingPlanes: clipPlanes,
+                    clipShadows: true
+                });
 
 				loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0000.obj', 5, loadedOBJs, objMaterial0);
-
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0001.obj', 4, loadedOBJs, objMaterial1);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0002.obj', 3, loadedOBJs, objMaterial2);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0003.obj', 2, loadedOBJs, objMaterial3);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0004.obj', 1, loadedOBJs, objMaterial4);
+                loadOBJ('/B_Complex/OBJFiles/bcomplex_ert_0005.obj', 0, loadedOBJs, objMaterial5);
 				//
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
