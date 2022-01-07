@@ -4,8 +4,7 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GUI } from './jsm/libs/dat.gui.module.js';
 import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv1Z5ERe/dist=es2020,mode=imports/optimized/d3-dsv.js";
 import { FontLoader } from './jsm/loaders/FontLoader.js';
-import { VRButton } from './jsm/webxr/VRButton.js';
-import { XRControllerModelFactory } from './jsm/webxr/XRControllerModelFactory.js';
+
 
 
 let scene, camera, controls, renderer;
@@ -54,7 +53,7 @@ const clipParams = {
 
 function init(){
 	scene = new THREE.Scene();
-	scene.background = new THREE.Color( 0x444444 );
+	
 	var gui = new GUI();
 
 	camera = new THREE.PerspectiveCamera(
@@ -103,45 +102,9 @@ function init(){
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.localClippingEnabled = true;
-	renderer.xr.enabled = true;
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
 	document.body.appendChild( VRButton.createButton( renderer ) );
-
-
-	//XR Section
-	//When user turn on the VR mode.
-	renderer.xr.addEventListener('sessionstart', function () {
-		scene.add(cameraGroup);
-		cameraGroup.add(camera);
-	});
-	//When user turn off the VR mode.
-	renderer.xr.addEventListener('sessionend', function () {
-		scene.remove(cameraGroup);
-		cameraGroup.remove(camera);
-	});
-
-	const geometry = new THREE.BufferGeometry();
-	geometry.setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 5 ) ] );
-
-	const controller1 = renderer.xr.getController( 0 );
-	controller1.add( new THREE.Line( geometry ) );
-	scene.add( controller1 );
-
-	const controller2 = renderer.xr.getController( 1 );
-	controller2.add( new THREE.Line( geometry ) );
-	scene.add( controller2 );
-
-	const controllerModelFactory = new XRControllerModelFactory();
-
-	const controllerGrip1 = renderer.xr.getControllerGrip( 0 );
-	controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
-	scene.add( controllerGrip1 );
-
-	const controllerGrip2 = renderer.xr.getControllerGrip( 1 );
-	controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
-	scene.add( controllerGrip2 );
-	//
 
 
 	controls = new OrbitControls(camera, renderer.domElement);
