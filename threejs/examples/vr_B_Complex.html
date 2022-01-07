@@ -305,7 +305,8 @@
 					const intersection = intersections[ 0 ];
 
 					const object = intersection.object;
-					//object.material.emissive.b = 1;
+					object.material.emissive.b = 1;
+                    object.material.opacity = 0.01;
 					controller.attach( object );
 
 					controller.userData.selected = object;
@@ -321,7 +322,8 @@
 				if ( controller.userData.selected !== undefined ) {
 
 					const object = controller.userData.selected;
-					//object.material.emissive.b = 0;
+					object.material.emissive.b = 0;
+                    object.material.opacity = 0;
 					loadedOBJs.attach( object );
 
 					controller.userData.selected = undefined;
@@ -356,7 +358,8 @@
 					const intersection = intersections[ 0 ];
 
 					const object = intersection.object;
-					//object.material.emissive.r = 1;
+					object.material.emissive.r = 1;
+                    object.material.opacity = 0.01;
 					intersected.push( object );
 
 					line.scale.z = intersection.distance;
@@ -374,7 +377,8 @@
 				while ( intersected.length ) {
 
 					const object = intersected.pop();
-					//object.material.emissive.r = 0;
+					object.material.emissive.r = 0;
+                    object.material.opacity = 0;
 
 				}
 
