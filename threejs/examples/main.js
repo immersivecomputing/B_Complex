@@ -4,12 +4,12 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js';
 import { GUI } from './jsm/libs/dat.gui.module.js';
 import { csvParse } from "https://cdn.skypack.dev/-/d3-dsv@v3.0.1-u1xCRjaLJc0qqv1Z5ERe/dist=es2020,mode=imports/optimized/d3-dsv.js";
 import { FontLoader } from './jsm/loaders/FontLoader.js';
+import { Lut } from './jsm/math/Lut.js';
 
 
-
-let scene, camera, controls, renderer;
+let scene, camera, uiscene, uicamera, controls, renderer;
 var ebbox = new THREE.Box3();
-let objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
+let lut, sprite, objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
 const cameraGroup = new THREE.Group();
 
 
@@ -53,6 +53,9 @@ const clipParams = {
 
 function init(){
 	scene = new THREE.Scene();
+	uiScene = new THREE.Scene();
+
+	lut = new Lut();
 	
 	var gui = new GUI();
 
@@ -62,6 +65,19 @@ function init(){
 		1,
 		10000
 	);
+
+	orthoCamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 1, 20 );
+	orthoCamera.position.set( 0.75, 0.5, 10 );
+
+	sprite = new THREE.Sprite( new THREE.SpriteMaterial( {
+		map: new THREE.CanvasTexture( lut.createCanvas() )
+	} ) );
+	sprite.scale.x = 0.0625;
+	sprite.scale.y = 0.5;
+	uiScene.add( sprite );
+	createAxisText(0.05,-0.25,0,'cmin', 'cmin')
+	createAxisText(0.05,0.25,0,'cmax', 'cmax')
+	
 
 	var light = getDirectionalLight(1);
 	var ambientLight = getAmbientLight(1.5)
