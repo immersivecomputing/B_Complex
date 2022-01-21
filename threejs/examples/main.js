@@ -75,8 +75,12 @@ function init(){
 	sprite.scale.x = 0.0625;
 	sprite.scale.y = 0.5;
 	uiscene.add( sprite );
-	//createAxisText(0.05,-0.25,0,'cmin', 'cmin')
-	//createAxisText(0.05,0.25,0,'cmax', 'cmax')
+	createAxisText(0.05,-0.2083,0,'0', '0')
+	createAxisText(0.05,-0.125,0,'1', '1')
+	createAxisText(0.05,-0.0417,0,'2', '2')
+	createAxisText(0.05,0.0417,0,'3', '3')
+	createAxisText(0.05,0.125,0,'4', '4')
+	createAxisText(0.05,0.2083,0,'5', '5')
 	
 
 	var light = getDirectionalLight(1);
