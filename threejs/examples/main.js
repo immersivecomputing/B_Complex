@@ -71,7 +71,7 @@ function init(){
 	originalAspect = window.innerWidth / window.innerHeight;
     orthocamera = new THREE.OrthographicCamera(-aspectRatio * viewSize / 2, aspectRatio * viewSize / 2, viewSize / 2, -viewSize / 2, 1, 2);
 	//orthocamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 1, 2 );
-	orthocamera.position.set( 0.75, 0.5, 1 );
+	orthocamera.position.set( 1.5, 0.5, 1 );
 
 	sprite = new THREE.Sprite( new THREE.SpriteMaterial( {
 		map: new THREE.CanvasTexture( lut.createCanvas() )
