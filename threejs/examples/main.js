@@ -7,7 +7,7 @@ import { FontLoader } from './jsm/loaders/FontLoader.js';
 import { Lut } from './jsm/math/Lut.js';
 
 
-let scene, camera, uiscene, uicamera, controls, renderer;
+let scene, camera, uiscene, orthocamera, controls, renderer;
 var ebbox = new THREE.Box3();
 let lut, sprite, objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
 const cameraGroup = new THREE.Group();
@@ -53,7 +53,7 @@ const clipParams = {
 
 function init(){
 	scene = new THREE.Scene();
-	uiScene = new THREE.Scene();
+	uiscene = new THREE.Scene();
 
 	lut = new Lut();
 	
@@ -66,17 +66,17 @@ function init(){
 		10000
 	);
 
-	orthoCamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 1, 20 );
-	orthoCamera.position.set( 0.75, 0.5, 10 );
+	orthocamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 1, 20 );
+	orthocamera.position.set( 0.75, 0.5, 10 );
 
 	sprite = new THREE.Sprite( new THREE.SpriteMaterial( {
 		map: new THREE.CanvasTexture( lut.createCanvas() )
 	} ) );
 	sprite.scale.x = 0.0625;
 	sprite.scale.y = 0.5;
-	uiScene.add( sprite );
-	createAxisText(0.05,-0.25,0,'cmin', 'cmin')
-	createAxisText(0.05,0.25,0,'cmax', 'cmax')
+	uiscene.add( sprite );
+	//createAxisText(0.05,-0.25,0,'cmin', 'cmin')
+	//createAxisText(0.05,0.25,0,'cmax', 'cmax')
 	
 
 	var light = getDirectionalLight(1);
@@ -683,7 +683,7 @@ function update(renderer, scene, camera, controls) {
 		camera
 	);
 	
-	renderer.render( uiScene, orthoCamera );
+	renderer.render( uiscene, orthocamera );
 
 	controls.update();
 
