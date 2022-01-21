@@ -46,7 +46,7 @@ class Lut {
 
 	setColorMap( colormap, count = 32 ) {
 
-		this.map = ColorMapKeywords[ colormap ] || ColorMapKeywords.rainbow;
+		this.map = ColorMapKeywords[ colormap ] || ColorMapKeywords.viridis;
 		this.n = count;
 
 		const step = 1.0 / this.n;
@@ -186,7 +186,8 @@ const ColorMapKeywords = {
 	'rainbow': [[ 0.0, 0x0000FF ], [ 0.2, 0x00FFFF ], [ 0.5, 0x00FF00 ], [ 0.8, 0xFFFF00 ], [ 1.0, 0xFF0000 ]],
 	'cooltowarm': [[ 0.0, 0x3C4EC2 ], [ 0.2, 0x9BBCFF ], [ 0.5, 0xDCDCDC ], [ 0.8, 0xF6A385 ], [ 1.0, 0xB40426 ]],
 	'blackbody': [[ 0.0, 0x000000 ], [ 0.2, 0x780000 ], [ 0.5, 0xE63200 ], [ 0.8, 0xFFFF00 ], [ 1.0, 0xFFFFFF ]],
-	'grayscale': [[ 0.0, 0x000000 ], [ 0.2, 0x404040 ], [ 0.5, 0x7F7F80 ], [ 0.8, 0xBFBFBF ], [ 1.0, 0xFFFFFF ]]
+	'grayscale': [[ 0.0, 0x000000 ], [ 0.2, 0x404040 ], [ 0.5, 0x7F7F80 ], [ 0.8, 0xBFBFBF ], [ 1.0, 0xFFFFFF ]],
+	'viridis': [[0.0,0x440154],[0.2, 0x414487],[0.4, 0x2A788E],[0.6, 0x22A884],[0.8, 0x7AD151],[1.0, 0xFDE725]]
 
 };
 
