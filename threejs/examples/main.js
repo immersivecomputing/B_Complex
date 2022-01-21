@@ -66,7 +66,7 @@ function init(){
 		10000
 	);
 
-	var viewSize = 20;
+	var viewSize = 5;
 	var aspectRatio = window.innerWidth / window.innerHeight;
 	originalAspect = window.innerWidth / window.innerHeight;
     orthocamera = new THREE.OrthographicCamera(-aspectRatio * viewSize / 2, aspectRatio * viewSize / 2, viewSize / 2, -viewSize / 2, 1, 2);
