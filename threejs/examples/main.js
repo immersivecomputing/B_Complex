@@ -683,6 +683,8 @@ function update(renderer, scene, camera, controls) {
 		camera
 	);
 	
+	renderer.render( uiScene, orthoCamera );
+
 	controls.update();
 
 	requestAnimationFrame(function(){
