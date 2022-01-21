@@ -702,10 +702,10 @@ function onWindowResize() {
 	var aspect = window.innerWidth / window.innerHeight;
     var change = originalAspect / aspect;
     var newSize = viewSize * change;
-    uicamera.left = -aspect * newSize / 2;
-    uicamera.right = aspect * newSize  / 2;
-    uicamera.top = newSize / 2;
-    uicamera.bottom = -newSize / 2;
+    orthocamera.left = -aspect * newSize / 2;
+    orthocamera.right = aspect * newSize  / 2;
+    orthocamera.top = newSize / 2;
+    orthocamera.bottom = -newSize / 2;
 	
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
