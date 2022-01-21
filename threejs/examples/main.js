@@ -266,12 +266,14 @@ function init(){
 	var folder4 = gui.addFolder('Color');
 	folder4.add(objParams, 'white').name('White').setValue(false).onChange(function (value){
 		if (value){
+			sprite.visible = false;
 			loadedOBJs.traverse(function (child){
 				if (child.isMesh){
 					child.material = objMaterial;
 				}
 			});	
 		}else{ 
+			sprite.visible = true;
 			loadedOBJs.traverse(function (child){
 				if (child.name == '0'){
 					child.traverse( function (newChild){
