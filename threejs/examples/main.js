@@ -118,6 +118,7 @@ function init(){
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.localClippingEnabled = true;
+	renderer.autoClear = false;
 	document.getElementById('webgl').appendChild(renderer.domElement);
 
 
@@ -677,7 +678,7 @@ function update(renderer, scene, camera, controls) {
 	}
 
 
-
+	renderer.clear();
 	renderer.render(
 		scene,
 		camera
