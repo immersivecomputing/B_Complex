@@ -7,7 +7,7 @@ import { FontLoader } from './jsm/loaders/FontLoader.js';
 import { Lut } from './jsm/math/Lut.js';
 
 
-let scene, camera, uiscene, orthocamera, controls, renderer, originalAspect;
+let scene, camera, uiscene, orthocamera, controls, renderer, originalAspect, viewSize;
 var ebbox = new THREE.Box3();
 let lut, sprite, objMaterial, objMaterial0, objMaterial1, objMaterial2, objMaterial3, objMaterial4, objMaterial5;
 const cameraGroup = new THREE.Group();
@@ -66,7 +66,7 @@ function init(){
 		10000
 	);
 
-	var viewSize = 2;
+	viewSize = 2;
 	var aspectRatio = window.innerWidth / window.innerHeight;
 	originalAspect = window.innerWidth / window.innerHeight;
     orthocamera = new THREE.OrthographicCamera(-aspectRatio * viewSize / 2, aspectRatio * viewSize / 2, viewSize / 2, -viewSize / 2, 1, 2);
