@@ -66,8 +66,8 @@ function init(){
 		10000
 	);
 
-	orthocamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 1, 20 );
-	orthocamera.position.set( 0.75, 0.5, 10 );
+	orthocamera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 1, 2 );
+	orthocamera.position.set( 0.75, 0.5, 1 );
 
 	sprite = new THREE.Sprite( new THREE.SpriteMaterial( {
 		map: new THREE.CanvasTexture( lut.createCanvas() )
