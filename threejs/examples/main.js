@@ -706,6 +706,7 @@ function onWindowResize() {
     orthocamera.right = aspect * newSize  / 2;
     orthocamera.top = newSize / 2;
     orthocamera.bottom = -newSize / 2;
+	orthocamera.updateProjectionMatrix();
 	
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
