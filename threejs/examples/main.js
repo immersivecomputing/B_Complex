@@ -331,7 +331,7 @@ function init(){
 		});
 	});
 
-
+	window.addEventListener( 'resize', onWindowResize );
 
 	console.log(scene);
 }
@@ -694,6 +694,24 @@ function getAmbientLight(intensity) {
 	var light = new THREE.AmbientLight('rgb(255,255,255)', intensity);
 
 	return light;
+}
+
+
+function onWindowResize() {
+	
+	var aspect = window.innerWidth / window.innerHeight;
+    var change = originalAspect / aspect;
+    var newSize = viewSize * change;
+    uicamera.left = -aspect * newSize / 2;
+    uicamera.right = aspect * newSize  / 2;
+    uicamera.top = newSize / 2;
+    uicamera.bottom = -newSize / 2;
+	
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
 }
 
 
