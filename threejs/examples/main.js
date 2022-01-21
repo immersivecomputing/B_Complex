@@ -75,12 +75,12 @@ function init(){
 	sprite.scale.x = 0.0625;
 	sprite.scale.y = 0.5;
 	uiscene.add( sprite );
-	createAxisText(0.05,-0.2083,0,'0', '0')
-	createAxisText(0.05,-0.125,0,'1', '1')
-	createAxisText(0.05,-0.0417,0,'2', '2')
-	createAxisText(0.05,0.0417,0,'3', '3')
-	createAxisText(0.05,0.125,0,'4', '4')
-	createAxisText(0.05,0.2083,0,'5', '5')
+	createCbarAxisText(0.05,-0.2083,0,'0', '0')
+	createCbarAxisText(0.05,-0.125,0,'1', '1')
+	createCbarAxisText(0.05,-0.0417,0,'2', '2')
+	createCbarAxisText(0.05,0.0417,0,'3', '3')
+	createCbarAxisText(0.05,0.125,0,'4', '4')
+	createCbarAxisText(0.05,0.2083,0,'5', '5')
 	
 
 	var light = getDirectionalLight(1);
@@ -649,6 +649,34 @@ function updateAxisText(boundingBox) {
 		obj.position.y = boundingBox.min.y;
 		obj.position.z = boundingBox.max.z;
 	}
+}
+
+function createCbarAxisText(x,y,z, axisName, label) {
+
+	const loader = new FontLoader();
+	loader.load('fonts/helvetiker_regular.typeface.json', function (response) {
+
+		var font = response;
+
+		var textGeo = new THREE.TextGeometry(label, {
+			size: 0.025,
+			height: 0.001,
+			curveSegments: 6,
+			font: font
+		});
+
+		var color = new THREE.Color();
+		color.setRGB(255, 250, 250);
+		var textMaterial = new THREE.MeshBasicMaterial({ color: color });
+		var axisLabel = new THREE.Mesh(textGeo, textMaterial);
+
+		axisLabel.position.x = x;
+		axisLabel.position.y = y;
+		axisLabel.position.z = -0.05;
+		axisLabel.name = axisName;
+
+		sprite.attach(axisLabel);
+	});
 }
 
 function getDirectionalLight(intensity) {
